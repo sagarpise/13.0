@@ -1,0 +1,409 @@
+#wrapwrap {
+    // Back to top button
+    .back-to-top {
+        position: fixed;
+        bottom: 55px;
+        right: 20px;
+        z-index: $zindex-dropdown - 1;
+        @include dr-icon-center(46px);
+        @if $border-radius == 0rem {
+            border-radius: $border-radius;
+        } @else {
+            border-radius: 50rem;
+        }
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+        color: gray('black');
+        background-color: gray('white');
+        &:hover {
+            background-color: theme-color('alpha');
+            color: color-yiq(theme-color('alpha'));
+        }
+    }
+    .custom-control.custom-checkbox {
+        .custom-control-input:not(:checked):not(:indeterminate) {
+            ~ .custom-control-label:before {
+                outline: 0px;
+            }
+        }
+        .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+            color: color-yiq(theme-color('alpha'));
+            background-color: theme-color('alpha');
+            border-color: theme-color('alpha');
+        }
+    }
+}
+
+// Display actions in mobile
+.tp-account-info-container {
+    &:not(.dr_in_navbar) {
+        width: 100%;
+    }
+    &.dr_not_in_navbar {
+        border-top: 1px solid $border-color;
+        @include tp-header-account-info-btns();
+        @include media-breakpoint-up(md) {
+            display: none;
+        }
+        @include media-breakpoint-down(md) {
+            display: block;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: white;
+            .tp-account-info {
+                margin: 0 !important;
+                text-align: center;
+                display: flex;
+                flex-direction: row;
+                .tp-account-info-item {
+                    border-left: none !important;
+                    flex-grow: 1;
+                    &:not(:last-child) {
+                        border-right: 1px solid $border-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// Mega menu
+//------------------------------------------------------------------------------
+.o_mega_menu {
+    font-family: $o-theme-font;
+    border-radius: $dropdown-border-radius;
+}
+
+//------------------------------------------------------------------------------
+// Header
+//------------------------------------------------------------------------------
+#wrapwrap {
+    > header {
+        // For shadow, Don't remove it will make problem in portal affix
+        &:not(.o_header_affix) {
+            z-index: 5;
+        }
+        > .navbar {
+            #top_menu {
+                > .nav-item {
+                    > .nav-link {
+                        font-weight: $headings-font-weight;
+                    }
+                }
+            }
+        }
+    }
+}
+
+$dr-header-height: 84px;
+$dr-pre-header-height: 0px;
+$dr-mobile-bottom-cart: 0px;
+
+.tp_hide_in_mobile {
+    @include media-breakpoint-down(md) {
+        display: none;
+    }
+}
+#wrapwrap > header > .navbar {
+    @include media-breakpoint-down(sm) {
+        #top_menu_collapse, #top_menu_collapse_clone {
+            margin-top: 0.5rem;
+            margin-left: -1rem; // should be same as navbar padding but in minus
+            margin-bottom: -0.5rem; // should be same as navbar padding but in minus
+            margin-right: -1rem; // should be same as navbar padding but in minus
+            border-top: 1px solid gray('400');
+            > #top_menu {
+                > li.nav-item {
+                    padding: 0px;
+                    > a {
+                        background: gray('200');
+                        text-align: left;
+                        padding: 15px 2rem;
+                        border-bottom: 1px solid gray('400');
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navbar-toggler {
+    border: none;
+    background: transparent !important;
+    &:focus {
+        outline: none;
+    }
+    .icon-bar {
+        width: 25px;
+        height: 2px;
+        background-color: theme-color('primary');
+        display: block;
+        transition: all 0.2s;
+        margin: 5px 2px;
+    }
+    .top-bar {
+        transform: rotate(45deg);
+        transform-origin: 10% 10%;
+    }
+    .middle-bar {
+        opacity: 0;
+    }
+    .bottom-bar {
+        transform: rotate(-45deg);
+        transform-origin: 10% 90%;
+    }
+    &.collapsed {
+        .top-bar, .bottom-bar  {
+            transform: rotate(0);
+        }
+        .middle-bar {
+            opacity: 1;
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// Title
+//------------------------------------------------------------------------------
+.s_title {
+    .s_title_boxed {
+        > * {
+            display: inline-block;
+            padding: $grid-gutter-width;
+            border: 1px solid;
+        }
+    }
+    .s_title_lines {
+        overflow: hidden;
+        &:before,
+        &:after {
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            width: 50px;
+            border-top: 2px solid;
+            border-top-color: inherit;
+        }
+        &:before { margin: 0 $grid-gutter-width/2 0 -100%; }
+        &:after  { margin: 0 -100% 0 $grid-gutter-width/2; }
+    }
+    .s_title_underlined {
+        @extend %o-page-header;
+    }
+    .s_title_small_caps {
+        font-variant: small-caps;
+    }
+    .s_title_transparent {
+        opacity: .5;
+    }
+    .s_title_thin {
+        font-weight: 300;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Rating
+//------------------------------------------------------------------------------
+div.o_website_rating_static {
+    color: #fea569;
+}
+div.o_website_rating_card_container table.o_website_rating_progress_table .o_website_rating_table_progress .o_rating_progressbar {
+    background-color: #fea569;
+}
+
+//------------------------------------------------------------------------------
+// Livechat
+//------------------------------------------------------------------------------
+div.o_livechat_button {
+    text-shadow: none;
+    background-color: theme-color('dark');
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+div.o_thread_window {
+    .o_thread_window_header {
+        background-color: theme-color('alpha');
+    }
+}
+
+//------------------------------------------------------------------------------
+// Customize modal
+//------------------------------------------------------------------------------
+div.modal.o_theme_customize_modal {
+    .modal-dialog {
+        padding: 0;
+        right: 0;
+        height: 100%;
+        max-width: 650px;
+        .modal-content {
+            height: 100%;
+            .modal-body {
+                padding: 0px;
+                > div{
+                    height: 100%;
+                    align-items: stretch !important;
+                    .nav {
+                        background: #efefef;
+                        border-right: 1px solid #dadada;
+                        .nav-item {
+                            margin: 0px !important;
+                            border-bottom: 1px solid #dadada;
+                            a.nav-link {
+                                padding: 10px;
+                                border-top: 0px;
+                                border-bottom: 0px;
+                                border-right: 0px;
+                                border-left: 4px solid #efefef;
+                                background: #efefef;
+                                color: #62646d;
+                                &.active{
+                                    border-left-color: theme-color('alpha');
+                                    color: gray('900');
+                                    background: #fff;
+                                    margin-right: -1px;
+                                }
+                            }
+                        }
+                    }
+                    .tab-content {
+                        padding: 10px;
+                    }
+                }
+            }
+            footer {
+                display: none;
+            }
+        }
+    }
+    .modal-header {
+        background-color: theme-color('alpha');
+    }
+    // Buttons
+    .dr_btn_style_option {
+        .o_theme_customize_option {
+            label {
+                position: relative;
+                width: 190px;
+                border-radius: 3px;
+                background-color: transparent;
+                padding: 15px;
+                border: 1px solid $border-color;
+                border-color: $border-color !important;
+                .d_btn_widget {
+                    @include o-position-absolute($left: 7px);
+                    width: 130px;
+                    border-radius: 3px;
+                    &.d_btn_style_1 {
+                        @include dr-btn-style-1();
+                    }
+                    &.d_btn_style_2 {
+                        @include dr-btn-style-2();
+                    }
+                    &.d_btn_style_3 {
+                        @include dr-btn-style-3();
+                    }
+                    &.d_btn_style_4 {
+                        @include dr-btn-style-4();
+                    }
+                    &.d_btn_style_5 {
+                        @include dr-btn-style-5();
+                    }
+                }
+                .d_btn_checked {
+                    @include o-position-absolute($top: 5px, $right: 5px);
+                    text-align: left;
+                    z-index: -1;
+                    border-radius: 3px;
+                    border: 1px solid $border-color;
+                }
+            }
+            label.checked {
+                .d_btn_checked {
+                    background-color: theme-color('gamma');
+                    color: white;
+                }
+            }
+            label:not(.checked) {
+                transition: all 0.4s;
+                width: 145px;
+                .d_btn_checked {
+                    display: none;
+                }
+                &:hover {
+                    width: 250px;
+                    .d_btn_checked {
+                        display: inline-block;
+                        width: 100px;
+                        &:before {
+                            @include o-position-absolute($left: 30px);
+                            content: 'Activate';
+                            width: 125px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .o_theme_customize_option {
+        &:not(.dropdown-item) label {
+            &.checked {
+                border-color: theme-color('alpha');
+                color: theme-color('alpha');
+            }
+        }
+        label:not(.checked) {
+            .d_btn_widget {
+                .fa-check-circle {
+                    display: none;
+                }
+            }
+        }
+        &.o_theme_customize_with_widget {
+            label {
+                &.checked {
+                    border-color: transparent;
+                    color: inherit;
+                }
+            }
+        }
+    }
+    .o_theme_customize_input {
+        .fa-edit {
+            color: theme-color('alpha');
+        }
+    }
+}
+
+.dr_category_lable {
+    color: gray('500');
+    &:hover {
+        color: gray('600');
+    }
+}
+.tp_underline_title {
+    position: relative;
+    display: block;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #e7e7e7;
+    &:after {
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 6rem;
+        height: 2px;
+        background-color: theme-color('primary');
+        content: '';
+    }
+}
+.tp_owl_carousel_controls {
+    @include o-position-absolute($top: -2px, $right: 0);
+}
+
+.dr_blog_snippet {
+    .s_latest_posts_post_title {
+        line-height: inherit !important;
+    }
+}

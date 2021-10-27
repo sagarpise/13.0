@@ -1,0 +1,22 @@
+@include dr-footer-colors();
+
+$footer-yiq-color: color-yiq(color('footer'));
+.o_footer {
+    .logo.img {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 1.2rem;
+    }
+    .tp-followus-icon {
+        @include dr-font-icons {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+    }
+    .o_footer_copyright {
+        border-top: 1px solid rgba($footer-yiq-color, 0.2);
+        padding: 2.5rem 0 1.6rem 0;
+    }
+}

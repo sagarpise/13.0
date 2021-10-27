@@ -1,0 +1,160 @@
+.tp_preheader {
+    @include dr-preheader-colors();
+    .dropdown-menu {
+        margin-top: 0.75rem;
+    }
+}
+
+.tp_header {
+    background-color: gray('white');
+    border-bottom: 1px solid rgba($body-color, 0.12);
+    a:not(.dropdown-item), .btn-link:not(.dropdown-item) {
+        color: $body-color;
+        &:hover {
+            color: theme-color('alpha');
+        }
+    }
+    .tp-account-info {
+        @include dr-font-icons {
+            font-size: 1.4rem;
+        }
+        .my_wish_quantity, .my_cart_quantity {
+            padding: 0.4em 0.6em;
+            border-radius: 40px;
+            vertical-align: top;
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        border-bottom-width: 0px;
+    }
+}
+
+#wrapwrap {
+    > header {
+        box-shadow: $box-shadow-sm;
+        > .navbar {
+            @include media-breakpoint-up(md) {
+                padding: 0px;
+            }
+            // FIX: Navbar always light in mobile: dark logo + in mobile navbar
+            @include media-breakpoint-down(sm) {
+                @include dr-navbar-light-default();
+            }
+            #top_menu {
+                margin: auto;
+                > .nav-item {
+                    // Special Menu
+                    // &:nth-child(3) {
+                    &:last-child:not(.o_extra_menu_items) {
+                        order: 1;
+                        margin-left: auto;
+                        background-color: rgba(theme-color('alpha'), 0.2);
+                        > .nav-link {
+                            color: theme-color('alpha');
+                            &:after {
+                                font-family: FontAwesome;
+                                border: 0;
+                                vertical-align: initial;
+                                content: "\f061";
+                                // content: "\f0a9";
+                                display: inline-block;
+                                margin-left: 0.255em;
+                            }
+                        }
+                    }
+                    @include media-breakpoint-up(md) {
+                        &.dr_special_menu {
+                            margin-right: auto;
+                            .fa-th-large:before {
+                                content: '\f0c9';
+                            }
+                            @if (color('menu') == theme-color('alpha')) {
+                                background-color: gray('white');
+                                > .nav-link.o_mega_menu_toggle {
+                                    color: theme-color('alpha');
+                                    &:hover, &:focus {
+                                        color: theme-color('alpha');
+                                    }
+                                }
+                            }
+                            @else {
+                                background-color: theme-color('alpha');
+                                > .nav-link {
+                                    color: color-yiq(theme-color('alpha'));
+                                    &:hover, &:focus {
+                                        color: color-yiq(theme-color('alpha'));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    > .nav-link {
+                        padding-left: 1.8rem !important;
+                        padding-right: 1.8rem !important;
+                        font-weight: $headings-font-weight;
+                        // FIX: Navbar always light in mobile: dark logo + in mobile navbar
+                        @include media-breakpoint-up(md) {
+                            @include dr-navbar-link-colors();
+                        }
+                        // Animation
+                        @include media-breakpoint-up(md) {
+                            padding: 1rem 0.8rem;
+                            position: relative;
+                            &:before {
+                                position: absolute;
+                                content: "";
+                                left: 50%;
+                                right: 50%;
+                                height: 4px;
+                                bottom: 0;
+                                background-color: theme-color('alpha');
+                                @if (color('menu') == theme-color('alpha')) {
+                                    background-color: gray('white');
+                                }
+                                transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                                transform: translate3d(0, 0, 0);
+                            }
+                            &:hover:before {
+                                left: 0;
+                                right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // FIX: Menu label in affix
+        &.o_header_affix {
+            > .navbar {
+                #top_menu {
+                    > .nav-item {
+                        > .nav-link {
+                            @include media-breakpoint-up(lg) {
+                                padding: 1.6rem 0.8rem;
+                            }
+                            .dr-menu-label {
+                                bottom: 60%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .dr_custom_search {
+        flex-grow: 1;
+        .search_icon {
+            display: none;
+        }
+        input {
+            padding: 9px;
+        }
+        .d_search_input_text {
+            display: none;
+        }
+    }
+}
+
+$dr-header-height: 145px;
+$dr-pre-header-height: 39px;
+$dr-mobile-bottom-cart: 51px;

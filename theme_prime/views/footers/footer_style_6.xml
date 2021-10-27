@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="footer_style_6" inherit_id="website.footer_custom" name="Footer Style 6" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-if="not no_footer">
+                <section class="s_banner_8 bg-alpha text-center pb16 pt16" data-name="Banner - 8">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed s_col_no_bgcolor">
+                            <div class="col-md-4 col-lg-4 col-12">
+                                <h6 class="font-weight-bold mb-0 text-white">
+                                    <i class="fa pr-2 fa-exchange"></i> FREE RETURNS
+                                </h6>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-12">
+                                <h6 class="font-weight-bold mb-0 text-white">
+                                    <i class="fa pr-2 fa-truck"></i> FREE SHIPPING FOR ORDER OVER $200
+                                </h6>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-12">
+                                <h6 class="font-weight-bold mb-0 text-white o_default_snippet_text">
+                                    <i class="fa pr-2 fa-life-ring"></i> FREE SUPPORT
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pt24 pb24">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-3 text-center text-lg-left">
+                                <a href="/">
+                                    <span t-field="website.logo_footer" t-options="{'widget': 'image', 'class': 'logo'}" role="img" t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name" />
+                                </a>
+                            </div>
+                            <div class="col-12 col-lg-6 text-center">
+                                <ul class="list-inline my-2 m-lg-0">
+                                    <li class="list-inline-item mx-3 my-1"><a href="#">Home</a></li>
+                                    <li class="list-inline-item mx-3 my-1"><a href="#">About Us</a></li>
+                                    <li class="list-inline-item mx-3 my-1"><a href="#">Contact Us</a></li>
+                                    <li class="list-inline-item mx-3 my-1"><a href="#">Privacy Policy</a></li>
+                                    <li class="list-inline-item mx-3 my-1"><a href="#">Terms of Use</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-lg-3 text-center text-lg-right">
+                                <t t-call="theme_prime.component_social_share">
+                                    <t t-set="_classes" t-value="'list-inline tp-followus-icon mb-0'"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('o_footer_copyright')]" position="replace">
+            <div class="o_footer_copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="">
+                                <span>Copyright &amp;copy;</span> <span t-field="res_company.name" itemprop="name">Company name</span>
+                            </div>
+                        </div>
+                        <div class="col-6 text-right">
+                            <t t-call="theme_prime.component_payment_icons">
+                                <t t-set="_classes" t-value="''"/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

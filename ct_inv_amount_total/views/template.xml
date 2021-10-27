@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_invoice_tree_curr" model="ir.ui.view">
+    <field name="name">account.invoice.tree</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_invoice_tree" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='amount_residual_signed']" position="after">
+        <field name="amount_total" string="Total" sum="Total"/>
+        <field name="amount_tax" string="Tax" sum="Total"/>
+        <field name="amount_residual" string="Amount Due" sum="Total"/>
+      </xpath>
+    </field>
+  </record>
+  <record id="view_invoice_tree_hiden_f" model="ir.ui.view">
+    <field name="name">account.invoice.tree</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_invoice_tree" />
+    <field name="arch" type="xml">
+      <!-- this view hides company currency -->
+      <xpath expr="//field[@name='amount_untaxed_signed']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//field[@name='amount_total_signed']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//field[@name='amount_residual_signed']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+    </field>
+  </record>
+</odoo>

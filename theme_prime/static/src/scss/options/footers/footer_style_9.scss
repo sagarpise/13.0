@@ -1,0 +1,64 @@
+@include dr-footer-colors();
+
+$footer-yiq-color: color-yiq(color('footer'));
+.o_footer {
+    .logo.img {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    .tp-logo-container {
+        border-bottom: 1px solid rgba($footer-yiq-color, 0.12);
+    }
+    .tp-followus-icon {
+        @include dr-font-icons {
+            font-size: 1.2rem;
+            margin-right: 0.8rem;
+        }
+    }
+    .o_footer_copyright {
+        background-color: darken(color('footer'), 6%);
+    }
+    .dr-footer-list {
+        > li {
+            padding-left: 14px;
+            position: relative;
+            &::before {
+                content: "\f105";
+                font-family: FontAwesome;
+                border: 0;
+                vertical-align: initial;
+                font-size: 16px;
+                position: absolute;
+                left: 0;
+                top: -2px;
+            }
+        }
+    }
+    .d-footer-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding-bottom: 9px;
+        margin-bottom: 14px;
+    }
+    .d-flex-block {
+        flex-basis: 100%;
+    }
+    .js_subscribe_email {
+        padding: 9px;
+    }
+    .s_icon_block_12 {
+        background-color: darken(color('footer'), 3%);
+        @include media-breakpoint-up(lg) {
+            .icon-block:not(:last-child) {
+                border-right: 1px solid rgba(144, 144, 144, 0.21)
+            }
+        }
+        .fa-2x {
+            width: 4rem;
+            height: 4rem;
+            line-height: 4rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+

@@ -1,0 +1,249 @@
+<odoo>
+    <data>
+        <template id="qa_frontend" name="Q A assets_frontend" inherit_id="website.assets_frontend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/website_qa/static/src/js/customer_valid.js"></script>
+                <link rel="stylesheet" href="/website_qa/static/src/css/custom.css"/> 
+            </xpath>
+        </template>
+
+
+        <template id="custom_sail_ids" inherit_id="website_sale.product" >
+            <xpath expr="//div[@id='product_full_description']" position="after">
+                <div class="oe_structure container ">
+                    <div class="qa_main_body">
+                        <h3 class="question_icon_name mt32 col-md-9 col-xs-9 col-sm-9" ><img src="/website_qa/static/src/img/icon-question.png"/> Ask a question</h3>
+                        <div class="col-md-9 col-xs-9 col-sm-9">
+                            <div  id="questionId" t-attf-data-p_uid="#{product.get_public_user_id()}" t-attf-data-uid="#{user_id.id}">
+                                <form action="/shop/qa" method="POST" id="myForm" enctype="multipart/form-data">
+                                     <p class="basic_note">If you have any Query about this product you can Ask freely by this panel. But please first check your Question in Whole Conversation panel for your and our convenience.</p>
+                                    <input type="hidden" name="user_id" t-attf-value="#{user_id.id}" />
+                                    <input type="hidden" id="product_tmp_id" name="product_tmp_id" t-attf-value="#{product_tmp_id or product.id}" />
+                                    <span class="first_question"><b>Question</b></span>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-4 col-md-4 col-xs-4" style="margin-bottom: 10px;">
+                                                <div class="card card-default">
+                                                    <div class="card-body wk_head" style="background-color: #f7f7f7;padding: 1rem;">
+                                                        <span class="question_decoration">Enter Your Question</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="question_name" required="True" class="text_box" placeholder="Enter your Question" size="50" />
+                                    <span class="first_question"><b>Description</b></span>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-xs-6" style="margin-bottom: 10px;">
+                                                <div class="card card-default">
+                                                    <div class="card-body wk_head" style="background-color: #f7f7f7;padding: 1rem;">
+                                                        <span class="question_decoration time_class">Describe Your Question</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <textarea id="summary" rows="3" name="content" class="form-control text_editor" placeholder="Description..." />
+                                    </div>
+                                    <button id="btnpostqns" class="btn btn-primary btn-lg submit_button">Post your Question
+                                    </button>
+                                    <div class="wk_show_sigin" id="wk_show_sigin">
+                                        <p class="wk_parah">Sigin to make your opnion count.</p>
+                                        <a t-attf-href="/web/login" class="btn btn-primary mt8 a-submit" style="margin-left:40px">Sign in</a>
+                                        <a class="btn btn-primary mt8 a-submit" id="wk_cancel">Cancel</a>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="oe_structure container">
+                            <t>
+                                <h3 class="question_icon_name col-md-9 col-xs-9 col-sm-9"><img src="/website_qa/static/src/img/icon-question.png" class="queston_img"/> Whole Conversation</h3>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <p class="basic_note">Frequently asked questions with there Answers. </p>
+                                    <t t-set="no_q" t-value="1"/> 
+                                    <t t-if="len(product.qa)==0">
+                                        <t t-set="no_q" t-value="False"/>
+                                        <h4>No Questions yet!</h4>
+                                    </t>
+                                </div>
+                                <div id="qa_block" class="col-md-9 col-xs-9 col-sm-9">
+                                    <t t-foreach="product.qa.sudo()" t-as="l">
+                                        <t t-if= "(l.state != 'cancel')">
+                                            <t t-if="(l.asked_by.id != user_id.id) and (l.state == 'answered') and (l.website_published)">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm-1 col-md-1 col-xs-1">
+                                                            <div>
+                                                                <img t-attf-src="/web/image/res.partner/#{l.sudo().asked_by.partner_id.id}/image_1920" class="rounded-circle" style="width:60px;"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-11 col-md-11 col-xs-11">
+                                                            <div class="card card-default">
+                                                                <div class="card-body wk_head">
+                                                                    <strong  t-field="l.asked_by.name"></strong> <span class="text-muted"><span class="time_class"><img src ="/website_qa/static/src/img/icon-clock.png" /><span class="time_class" t-field="l.create_date"/></span></span>
+                                                                </div>
+                                                                <div class="answer_block card-body">
+                                                                    <t>
+                                                                        <t t-set="no_q" t-value="False"/>
+                                                                        <h3 t-field="l.question" class="top_question"></h3>
+                                                                        <div class="user_description">
+                                                                            <div class='text-muted' t-field="l.description"/>
+                                                                        </div>
+                                                                        <t  t-if="(l.state != 'answered')">
+                                                                            <div class="no_answer_class">
+                                                                            Yet to answer.
+                                                                            </div>
+                                                                        </t>
+                                                                        <t  t-if="(l.answer != False) and (l.state == 'answered')">
+                                                                            <div class='content_class row' >
+                                                                                <div class="col-sm-1 col-md-1 col-xs-1">
+                                                                                    <img t-attf-src="/web/image/res.partner/#{l.sudo().answer_by.partner_id.id}/image_1920" class="rounded-circle" style="width:50px;"/>
+                                                                                </div>
+                                                                                <div class="col-sm-11 col-md-11 col-xs-11">
+                                                                                    <b  t-field="l.answer_by.name"/>
+                                                                                    <span class="time_class"><img src ="/website_qa/static/src/img/icon-clock.png"/><span class="time_class" t-field="l.answered_date"/></span>
+                                                                                    <div class="qa_answer">
+                                                                                        <span class="js_product " t-field="l.answer"/>
+                                                                                        <t t-call="website.publish_management" style="margin-top: 12px !important;"><t t-set="object" t-value="l"/></t>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </t>
+                                                                    </t>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <t t-if="(l.asked_by.id != user_id.id) and (l.state == 'answered') and (not(l.website_published))" >
+                                                <t groups="sales_team.group_sale_manager">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                                                <div >
+                                                                    <img t-attf-src="/web/image/res.partner/#{l.sudo().asked_by.partner_id.id}/image_1920" class="rounded-circle" style="width:60px;"/>
+                                                                </div><!-- /thumbnail -->
+                                                            </div>
+                                                            <div class="col-sm-11 col-md-11 col-xs-11">
+                                                                <div class="card card-default">
+                                                                    <div class="card-body wk_head">
+                                                                        <strong  t-field="l.asked_by.name"></strong> <span class="text-muted"><span class="time_class"><img src ="/website_qa/static/src/img/icon-clock.png" /><span class="time_class" t-field="l.create_date"/></span></span>
+                                                                    </div>
+                                                                    <div class="answer_block card-body">
+                                                                        <t>
+                                                                            <t t-set="no_q" t-value="False"/>
+                                                                            <h3 t-field="l.question" class="top_question"></h3>
+                                                                            <div class="user_description">
+                                                                                <div class='text-muted' t-field="l.description"/>
+                                                                            </div>
+                                                                            <t  t-if="(l.state != 'answered')">
+                                                                                <div class="no_answer_class">
+                                                                                Yet to answer.
+                                                                                </div>
+                                                                            </t>
+                                                                            <t  t-if="(l.answer != False) and (l.state == 'answered')">
+                                                                                <div class='content_class row' >
+                                                                                    <div class="answer_by_id">
+                                                                                        <img t-attf-src="/web/image/res.partner/#{l.sudo().answer_by.partner_id.id}/image_1920" class="rounded-circle" style="width:60px;"/>
+                                                                                    </div>
+                                                                                    <div class="answer_panel">
+                                                                                        <b  t-field="l.answer_by.name"/>
+                                                                                        <span class="time_class"><img src ="/website_qa/static/src/img/icon-clock.png"/><span class="time_class" t-field="l.answered_date"/></span>
+                                                                                        <div class="qa_answer">
+                                                                                            <span class="js_product " t-field="l.answer"/>
+                                                                                            <t t-call="website.publish_management" style="margin-top: 12px !important;"><t t-set="object" t-value="l"/></t>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </t>
+                                                                        </t>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <t t-if="(l.asked_by.id == user_id.id)" >
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-1 col-md-1 col-xs-1">
+                                                        <div class="">
+                                                            <img t-attf-src="/web/image/res.partner/#{l.sudo().asked_by.partner_id.id}/image_1920" class="rounded-circle" style="width:60px;"/>
+                                                        </div><!-- /thumbnail -->
+                                                    </div>
+                                                    <div class="col-sm-11 col-md-11 col-xs-11">
+                                                        <div class="card card-default">
+                                                            <div class="card-body wk_head">
+                                                                <strong  t-field="l.asked_by.name"></strong> <span class="text-muted"><span class="time_class"><img src ="/website_qa/static/src/img/icon-clock.png" /><span class="time_class" t-field="l.create_date"/></span></span>
+                                                            </div>
+                                                            <div class="answer_block card-body">
+                                                                <t>
+                                                                    <t t-set="no_q" t-value="False"/>
+                                                                    <h3 t-field="l.question" class="top_question"></h3>
+                                                                    <div class="user_description">
+                                                                        <div class='text-muted' t-field="l.description"/>
+                                                                    </div>
+                                                                    <t  t-if="(l.state != 'answered')">
+                                                                        <div class="no_answer_class">
+                                                                            Yet to answer.
+                                                                        </div>
+                                                                    </t>
+                                                                    <t  t-if="(l.answer != False) and (l.state == 'answered')">
+                                                                        <div class='content_class row' >
+                                                                            <div class="col-sm-1 col-md-1 col-xs-1">
+                                                                                <img t-attf-src="/web/image/res.partner/#{l.sudo().answer_by.partner_id.id}/image_1920" class="rounded-circle" style="width:50px;"/>
+                                                                            </div>
+                                                                            <div class="col-sm-11 col-md-11 col-xs-11 ">
+                                                                                <b  t-field="l.answer_by.name"/>
+                                                                                <span class="time_class"><img src ="/website_qa/static/src/img/icon-clock.png"/><span class="time_class" t-field="l.answered_date"/></span>
+                                                                                <div class="qa_answer">
+                                                                                    <span class="js_product " t-field="l.answer"/>
+                                                                                    <t t-call="website.publish_management" style="margin-top: 12px !important;">
+                                                                                        <t t-set="object" t-value="l"/>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </t>
+                                                                </t>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </t>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Alert!</h4>
+                            </div>
+                            <div class="modal-body">
+                                If you want to post any type of question according to this product Press "Sign in" button or If you are not a member, use the "Sign up" button to become member of this portal.
+                            </div>
+                            <div class="modal-footer">
+                                <a type="button" class="btn btn-primary mt8 a-submit" data-dismiss="modal">Close</a>
+                                <a  t-attf-href="/web/login" class="btn btn-primary mt8 a-submit" style="margin-left:40px">Sign in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

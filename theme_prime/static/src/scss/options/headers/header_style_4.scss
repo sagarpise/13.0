@@ -1,0 +1,61 @@
+.tp_preheader {
+    @include dr-preheader-colors();
+    .dropdown-menu {
+        margin-top: 0.75rem;
+    }
+}
+
+#wrapwrap {
+    > header {
+        box-shadow: $box-shadow-sm;
+        > .navbar {
+            @include dr-navbar-light-default();
+            .tp-account-info {
+                font-family: $font-family-base;
+                a:not(.dropdown-item){
+                    color: $body-color;
+                    &:hover {
+                        color: theme-color('alpha');
+                    }
+                }
+                .my_wish_quantity, .my_cart_quantity {
+                    padding: 0.4em 0.6em;
+                    border-radius: 40px;
+                    vertical-align: top;
+                }
+                @include dr-font-icons {
+                    font-size: 1.4rem;
+                }
+            }
+            #top_menu {
+                margin: auto;
+                > .nav-item {
+                    padding-left: 0.8rem;
+                    padding-right: 0.8rem;
+                    // Special Menu
+                    @include media-breakpoint-up(md) {
+                        &.dr_special_menu {
+                            background-color: theme-color('alpha');
+                            box-shadow: $box-shadow;
+                            border-radius: 0.25rem;
+                            > .nav-link {
+                                color: color-yiq(theme-color('alpha'));
+                                &:hover, &:focus {
+                                    color: color-yiq(theme-color('alpha'));
+                                }
+                            }
+                        }
+                    }
+                    > .nav-link {
+                        padding-top: 0.6rem;
+                        padding-bottom: 0.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+$dr-header-height: 84px;
+$dr-pre-header-height: 39px;
+$dr-mobile-bottom-cart: 51px;

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="user_navbar" inherit_id="website.user_navbar">
+        <xpath expr="//a[@id='theme_customize']" position="attributes">
+            <attribute name="id">d_theme_customize</attribute>
+        </xpath>
+    </template>
+
+    <template id="theme_customize" inherit_id="website.theme_customize">
+        <xpath expr="//content[last()]" position="after">
+            <content id="theme_customize_content_headers" string="Headers" title="Choose your header style">
+                <list string="Header Style" data-col="12">
+                    <opt string="Default" data-reload="/" data-xmlid=""/>
+                    <opt string="Header 1" data-reload="/" data-xmlid="theme_prime.header_style_1, theme_prime.option_header_style_1, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 2" data-reload="/" data-xmlid="theme_prime.header_style_2, theme_prime.option_header_style_2, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 3" data-reload="/" data-xmlid="theme_prime.header_style_3, theme_prime.option_header_style_3, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 4" data-reload="/" data-xmlid="theme_prime.header_style_4, theme_prime.option_header_style_4, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 5" data-reload="/" data-xmlid="theme_prime.header_style_5, theme_prime.option_header_style_5, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 6" data-reload="/" data-xmlid="theme_prime.header_style_6, theme_prime.option_header_style_6, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 7" data-reload="/" data-xmlid="theme_prime.header_style_7, theme_prime.option_header_style_7, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 8" data-reload="/" data-xmlid="theme_prime.header_style_8, theme_prime.option_header_style_8, theme_prime.portal_show_sign_in"/>
+                    <opt string="Header 9" data-reload="/" data-xmlid="theme_prime.header_style_9, theme_prime.option_header_style_9, theme_prime.portal_show_sign_in"/>
+                </list>
+                <list string="Header Options" data-col="12">
+                    <opt data-widget="color" data-color="preheader" string="Pre-Header Color"/>
+                    <opt data-widget="color" data-color="menu" string="Navbar Color"/>
+                    <checkbox>
+                        <opt string="Hide Pre-Header (if any)" data-xmlid="theme_prime.option_disable_preheader" data-reload="/"/>
+                    </checkbox>
+                    <checkbox>
+                        <opt string="Hide search category dropdown (if any)" data-xmlid="theme_prime.option_category_dropdown" data-reload="/"/>
+                    </checkbox>
+                    <checkbox>
+                        <opt string="Show logged user avatar in header" data-xmlid="theme_prime.option_show_user_avatar" data-reload="/"/>
+                    </checkbox>
+                </list>
+            </content>
+            <content id="theme_customize_content_footers" string="Footers" title="Choose your footer style">
+                <list string="Footer Style" data-col="12">
+                    <opt string="Default" data-reload="/" data-xmlid=""/>
+                    <opt string="Footer 1" data-reload="/" data-xmlid="theme_prime.footer_style_1, theme_prime.option_footer_style_1"/>
+                    <opt string="Footer 2" data-reload="/" data-xmlid="theme_prime.footer_style_2, theme_prime.option_footer_style_2"/>
+                    <opt string="Footer 3" data-reload="/" data-xmlid="theme_prime.footer_style_3, theme_prime.option_footer_style_3"/>
+                    <opt string="Footer 4" data-reload="/" data-xmlid="theme_prime.footer_style_4, theme_prime.option_footer_style_4"/>
+                    <opt string="Footer 5" data-reload="/" data-xmlid="theme_prime.footer_style_5, theme_prime.option_footer_style_5"/>
+                    <opt string="Footer 6" data-reload="/" data-xmlid="theme_prime.footer_style_6, theme_prime.option_footer_style_6"/>
+                    <opt string="Footer 7" data-reload="/" data-xmlid="theme_prime.footer_style_7, theme_prime.option_footer_style_7"/>
+                    <opt string="Footer 8" data-reload="/" data-xmlid="theme_prime.footer_style_8, theme_prime.option_footer_style_8"/>
+                    <opt string="Footer 9" data-reload="/" data-xmlid="theme_prime.footer_style_9, theme_prime.option_footer_style_9"/>
+                </list>
+                <list string="Footer Colors" data-col="12">
+                    <opt data-widget="color" data-color="footer" string="Footer Color"/>
+                </list>
+            </content>
+            <content id="theme_customize_content_ui" string="Prime UI">
+                <list string="Product Label Colors">
+                    <opt data-widget="color" data-color="product-label-green" string="Green"/>
+                    <opt data-widget="color" data-color="product-label-blue" string="Blue"/>
+                    <opt data-widget="color" data-color="product-label-gray" string="Gray"/>
+                    <opt data-widget="color" data-color="product-label-red" string="Red"/>
+                    <opt data-widget="color" data-color="product-label-orange" string="Orange"/>
+                    <opt data-widget="color" data-color="product-label-black" string="Black"/>
+                </list>
+                <list string="Menu Label Colors">
+                    <opt data-widget="color" data-color="menu-label-green" string="Green"/>
+                    <opt data-widget="color" data-color="menu-label-blue" string="Blue"/>
+                    <opt data-widget="color" data-color="menu-label-gray" string="Gray"/>
+                    <opt data-widget="color" data-color="menu-label-red" string="Red"/>
+                    <opt data-widget="color" data-color="menu-label-orange" string="Orange"/>
+                    <opt data-widget="color" data-color="menu-label-black" string="Black"/>
+                </list>
+                <list string="Button Styles" data-col="12">
+                    <opt data-widget="d_button_widget" string="Default" data-d_btn_style="d_btn_style_default" data-reload="/" data-xmlid=""/>
+                    <opt data-widget="d_button_widget" string="Hover 1" data-d_btn_style="d_btn_style_1" data-reload="/" data-xmlid="theme_prime.option_button_style_1"/>
+                    <opt data-widget="d_button_widget" string="Hover 2" data-d_btn_style="d_btn_style_2" data-reload="/" data-xmlid="theme_prime.option_button_style_2"/>
+                    <opt data-widget="d_button_widget" string="Hover 3" data-d_btn_style="d_btn_style_3" data-reload="/" data-xmlid="theme_prime.option_button_style_3"/>
+                    <opt data-widget="d_button_widget" string="Hover 4" data-d_btn_style="d_btn_style_4" data-reload="/" data-xmlid="theme_prime.option_button_style_4"/>
+                    <opt data-widget="d_button_widget" string="Hover 5" data-d_btn_style="d_btn_style_5" data-reload="/" data-xmlid="theme_prime.option_button_style_5"/>
+                </list>
+                <list data-col="12">
+                    <checkbox>
+                        <opt string="Show back to top button" data-xmlid="theme_prime.option_back_to_top_button" data-reload="/"/>
+                    </checkbox>
+                    <checkbox>
+                        <opt string="Enable rounded corners for UI?" data-xmlid="theme_prime.option_ui_rounded" data-reload="/"/>
+                    </checkbox>
+                </list>
+            </content>
+        </xpath>
+    </template>
+
+    <!-- Headers -->
+    <template id="option_header_style_1" inherit_id="website.assets_frontend" name="Option Header Style 1" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_1.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_2" inherit_id="website.assets_frontend" name="Option Header Style 2" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_2.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_3" inherit_id="website.assets_frontend" name="Option Header Style 3" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_3.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_4" inherit_id="website.assets_frontend" name="Option Header Style 4" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_4.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_5" inherit_id="website.assets_frontend" name="Option Header Style 5" active="True">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_5.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_6" inherit_id="website.assets_frontend" name="Option Header Style 6" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_6.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_7" inherit_id="website.assets_frontend" name="Option Header Style 7" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_7.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_8" inherit_id="website.assets_frontend" name="Option Header Style 8" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_8.scss"/>
+        </xpath>
+    </template>
+    <template id="option_header_style_9" inherit_id="website.assets_frontend" name="Option Header Style 9" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/headers/header_style_9.scss"/>
+        </xpath>
+    </template>
+
+    <!-- Footers -->
+    <template id="option_footer_style_1" inherit_id="website.assets_frontend" name="Option Footer Style 1" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_1.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_2" inherit_id="website.assets_frontend" name="Option Footer Style 2" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_2.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_3" inherit_id="website.assets_frontend" name="Option Footer Style 3" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_3.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_4" inherit_id="website.assets_frontend" name="Option Footer Style 4" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_4.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_5" inherit_id="website.assets_frontend" name="Option Footer Style 5" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_5.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_6" inherit_id="website.assets_frontend" name="Option Footer Style 6" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_6.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_7" inherit_id="website.assets_frontend" name="Option Footer Style 7" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_7.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_8" inherit_id="website.assets_frontend" name="Option Footer Style 8" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_8.scss"/>
+        </xpath>
+    </template>
+    <template id="option_footer_style_9" inherit_id="website.assets_frontend" name="Option Footer Style 9" active="True">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/footers/footer_style_9.scss"/>
+        </xpath>
+    </template>
+
+    <!-- Buttons -->
+    <template id="option_button_style_1" inherit_id="website.assets_frontend" name="Option Buttons Style 1" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/buttons/button_style_1.scss"/>
+        </xpath>
+    </template>
+    <template id="option_button_style_2" inherit_id="website.assets_frontend" name="Option Buttons Style 2" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/buttons/button_style_2.scss"/>
+        </xpath>
+    </template>
+    <template id="option_button_style_3" inherit_id="website.assets_frontend" name="Option Buttons Style 3" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/buttons/button_style_3.scss"/>
+        </xpath>
+    </template>
+    <template id="option_button_style_4" inherit_id="website.assets_frontend" name="Option Buttons Style 4" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/buttons/button_style_4.scss"/>
+        </xpath>
+    </template>
+    <template id="option_button_style_5" inherit_id="website.assets_frontend" name="Option Buttons Style 5" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/buttons/button_style_5.scss"/>
+        </xpath>
+    </template>
+
+    <!-- User Avatar -->
+    <template id="option_show_user_avatar" name="Show User Avatar" active="True"/>
+
+    <!-- Back to top button -->
+    <template id="option_back_to_top_button" inherit_id="website.layout" name="Option Back to Top Button" active="True">
+        <xpath expr="//div[@id='wrapwrap']" position="inside">
+            <a href="#" class="back-to-top o_not_editable" style="display: none;" title="Scroll back to top">
+                <i class="lnr lnr-chevron-up"/>
+            </a>
+        </xpath>
+    </template>
+
+    <!-- Rounded UI -->
+    <template id="option_ui_rounded" inherit_id="website._assets_frontend_helpers" name="Option UI Rounded" active="False">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/ui_rounded.scss"/>
+        </xpath>
+    </template>
+
+    <!-- Option: Hide Pre Header UI -->
+    <template id="option_disable_preheader" inherit_id="website.assets_frontend" name="Hide Preheader (if any)" active="False" priority="900">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/ui_disable_preheaders.scss"/>
+        </xpath>
+    </template>
+
+    <!-- Option: Hide Pre Header UI -->
+    <template id="option_category_dropdown" inherit_id="website.assets_frontend" name="Hide Search Input Category Dropdown (if any)" active="False" priority="900">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/theme_prime/static/src/scss/options/ui_disable_category_dropdown.scss"/>
+        </xpath>
+    </template>
+
+    <!-- Option: Show Sign In -->
+    <template id="portal_show_sign_in" inherit_id="portal.portal_show_sign_in" name="Show Sign In" active="True">
+        <xpath expr="//li[@groups='base.group_public']" position="replace">
+        </xpath>
+        <xpath expr="//li[@groups='base.group_public']" position="replace">
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+
+    <t t-name="website.theme_customize_widget_d_button_widget">
+        <button t-attf-class="btn btn-alpha d_btn_widget #{d_btn_style}">
+            <t t-esc="string"></t>
+        </button>
+        <button class="btn d_btn_checked">
+            <i class="fa fa-check"></i>
+        </button>
+    </t>
+
+</templates>

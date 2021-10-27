@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="component_social_share" name="Component Social Share">
+        <ul t-att-class="_classes">
+            <li t-if="website.social_facebook" class="list-inline-item">
+                <a t-att-href="website.social_facebook" target="_blank" rel="noopener" data-toggle="tooltip" title="Facebook" aria-label="Facebook">
+                    <span class="fa fa-facebook"></span>
+                </a>
+            </li>
+            <li t-if="website.social_twitter" class="list-inline-item">
+                <a t-att-href="website.social_twitter" target="_blank" rel="noopener" data-toggle="tooltip" title="Twitter" aria-label="Twitter">
+                    <span class="fa fa-twitter"></span>
+                </a>
+            </li>
+            <li t-if="website.social_linkedin" class="list-inline-item">
+                <a t-att-href="website.social_linkedin" target="_blank" rel="noopener" data-toggle="tooltip" title="Linkedin" aria-label="Linkedin">
+                    <span class="fa fa-linkedin"></span>
+                </a>
+            </li>
+            <li t-if="website.social_youtube" class="list-inline-item">
+                <a t-att-href="website.social_youtube" target="_blank" rel="noopener" data-toggle="tooltip" title="Youtube" aria-label="Youtube">
+                    <span class="fa fa-youtube"></span>
+                </a>
+            </li>
+            <li t-if="website.social_instagram" class="list-inline-item">
+                <a t-att-href="website.social_instagram" target="_blank" rel="noopener" data-toggle="tooltip" title="Instagram" aria-label="Instagram">
+                    <span class="fa fa-instagram"></span>
+                </a>
+            </li>
+            <li t-if="website.social_github" class="list-inline-item">
+                <a t-att-href="website.social_github" target="_blank" rel="noopener" data-toggle="tooltip" title="Github" aria-label="Github">
+                    <span class="fa fa-github"></span>
+                </a>
+            </li>
+        </ul>
+    </template>
+
+    <!-- <li></li> avoid white space issue -->
+    <template id="tp_mobile_toolbar">
+        <div t-attf-class="col-12 col-md-auto order-0 order-md-2 tp-account-info-container p-0 #{_classes}">
+            <ul t-attf-class="list-inline my-3 m-md-0 tp-account-info #{_ul_classes}">
+                <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)" />
+                <li class="tp-account-info-item">
+                    <a href="#" class="tp-search-popover tp-header-navbar-btn" t-att-data-search="search" data-placement="bottom" aria-label="Search">
+                        <i class="fa fa-search tp-header-navbar-btn-icon"/>
+                        <small class="tp-header-navbar-btn-lable">Search</small>
+                    </a>
+                </li><li t-if="website_sale_pricelists and len(website_sale_pricelists)&gt;1" class="tp-pricelist-btn tp-account-info-item">
+                    <div class="dropdown">
+                        <t t-set="curr_pl" t-value="website.get_current_pricelist()" />
+                        <a role="button" href="#" class="dropdown-toggle tp-header-navbar-btn position-relative" data-toggle="dropdown">
+                            <p class="tp-header-navbar-btn-icon mb-0" t-esc="curr_pl.currency_id.symbol"/>
+                            <small class="tp-header-navbar-btn-lable">Pricelist</small>
+                        </a>
+                        <div class="dropdown-menu" role="menu">
+                            <t t-foreach="website_sale_pricelists" t-as="pl">
+                                <a role="menuitem" t-att-href="'/shop/change_pricelist/%s' % pl.id" class="dropdown-item">
+                                    <span class="switcher_pricelist" t-att-data-pl_id="pl.id" t-esc="pl.name" />
+                                </a>
+                            </t>
+                        </div>
+                    </div>
+                </li><li class="tp-account-info-item">
+                    <t t-set="website_sale_order" t-value="website.sale_get_order()" />
+                    <!-- To work cart menu should be inside header -->
+                    <header>
+                        <a class="dr_sale_cart_sidebar o_wsale_my_cart tp-header-navbar-btn position-relative" href="/shop/cart" aria-label="Cart">
+                            <i class="fa fa-shopping-cart tp-header-navbar-btn-icon"></i>
+                            <small class="tp-header-navbar-btn-lable">My Cart</small>
+                            <sup class="my_cart_quantity badge badge-primary mb-0 font-weight-bold" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" />
+                        </a>
+                    </header>
+                </li><li t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" class="tp-account-info-item">
+                    <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
+                    <!-- To work wishlist menu should be inside header -->
+                    <header>
+                        <a class="o_wsale_my_wish tp-header-navbar-btn position-relative" href="/shop/wishlist" aria-label="Wishlist">
+                            <i class="fa fa-heart-o tp-header-navbar-btn-icon"></i>
+                            <small class="tp-header-navbar-btn-lable">Wishlist</small>
+                            <sup class="my_wish_quantity o_animate_blink badge badge-primary mb-0 font-weight-bold" t-esc="wishcount or ''" />
+                        </a>
+                    </header>
+                </li><li t-if="request.website.viewref('portal.portal_show_sign_in').active" class="tp-account-info-item">
+                    <div class="dropdown" t-ignore="true" t-if="not user_id._is_public()">
+                        <a t-if="request.website.viewref('theme_prime.option_show_user_avatar').active" href="#" class="dropdown-toggle d-block position-relative tp-header-navbar-btn" data-toggle="dropdown" aria-label="Account Info">
+                            <img t-attf-src="/web/image/res.users/#{user_id.id}/image_128" class="rounded-circle tp_user_image" height="25" width="25" t-att-alt="user_id.name"/>
+                            <small class="tp-header-navbar-btn-lable">Account</small>
+                        </a>
+                        <a t-else="" href="#" class="dropdown-toggle d-block position-relative tp-header-navbar-btn" data-toggle="dropdown" aria-label="Account Info">
+                            <i class="fa fa-user-o align-top tp-header-navbar-btn-icon"/>
+                            <small class="tp-header-navbar-btn-lable">Account</small>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <div class="dropdown-header"><t t-esc="user_id.name"/></div>
+                            <a href="/my" role="menuitem" class="dropdown-item">My Account</a>
+                            <a href="/my/orders" role="menuitem" class="dropdown-item">Orders</a>
+                            <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                                Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/web/session/logout?redirect=/" role="menuitem" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                    <div class="dropdown" groups="base.group_public">
+                        <a href="#" class="dropdown-toggle d-block tp-header-navbar-btn position-relative" data-toggle="dropdown" aria-label="Account Info">
+                            <i class="fa fa-user-o tp-header-navbar-btn-icon"/>
+                            <small class="tp-header-navbar-btn-lable">Login</small>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <div class="dropdown-header">Guest</div>
+                            <a href="/web/login" role="menuitem" class="dropdown-item">Login</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/shop/cart" role="menuitem" class="dropdown-item">My Cart</a>
+                            <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                                Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="component_payment_icons" name="Component Payment Icons">
+        <ul t-attf-class="list-inline #{_classes}">
+            <t t-set="counter" t-value="0"/>
+            <t t-set="icon_limit" t-value="icon_limit or 5"/>
+            <t t-set="acquires" t-value="request.env['payment.acquirer'].search([('module_state', '=', 'installed'), ('state', '=', 'enabled')])"/>
+            <t t-foreach="acquires" t-as="aquire">
+                <t t-foreach="aquire.payment_icon_ids" t-as="pm_icon">
+                    <li t-attf-class="list-inline-item my-1 #{'' if (counter &lt; icon_limit) else ' d-none'}">
+                        <span t-field="pm_icon.image_payment_form"
+                            t-options='{"widget": "image", "alt-field": "name"}'/>
+                    </li>
+                    <li t-if="counter == icon_limit" class="list-inline-item">
+                        <span data-toggle="tooltip" t-att-title="', '.join([opt.name for opt in aquire.payment_icon_ids[icon_limit:]])">More...</span>
+                    </li>
+                    <t t-set="counter" t-value="counter + 1"/>
+                </t>
+            </t>
+        </ul>
+    </template>
+
+    <template id="component_company_info" name="Component Company Info">
+        <ul t-attf-class="list-unstyled #{_classes}">
+            <li class="my-2">
+                <div t-field="res_company.partner_id" t-options='{"widget": "contact", "fields": ["address"]}'/>
+            </li>
+            <li t-if="res_company.phone" class="my-2">
+                <a t-attf-href="tel:#{res_company.phone}"><i class="fa fa-phone"/> <span t-field="res_company.phone"/></a>
+            </li>
+            <li t-if="res_company.email" class="my-2">
+                <a t-attf-href="mailto:#{res_company.email}"><i class="fa fa-envelope"/> <span t-field="res_company.email"/></a>
+            </li>
+        </ul>
+    </template>
+
+    <template id="component_pricelist" name="Component Pricelist">
+        <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)" />
+        <li t-if="website_sale_pricelists and len(website_sale_pricelists)&gt;1" t-attf-class="list-inline-item #{_classes}">
+            <div class="dropdown">
+                <t t-set="curr_pl" t-value="website.get_current_pricelist()" />
+                <a role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="mr-1" t-esc="curr_pl.currency_id.symbol"/><t t-esc="curr_pl and curr_pl.name or ' - '" />
+                </a>
+                <div class="dropdown-menu" role="menu">
+                    <t t-foreach="website_sale_pricelists" t-as="pl">
+                        <a role="menuitem" t-att-href="'/shop/change_pricelist/%s' % pl.id" class="dropdown-item">
+                            <span class="switcher_pricelist" t-att-data-pl_id="pl.id" t-esc="pl.name" />
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </li>
+    </template>
+
+    <template id="component_language" name="Component Language">
+        <li t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))" class="list-inline-item">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <i class="lnr lnr-earth"/> <span t-esc="list(filter(lambda lg : lg[0] == lang, languages))[0][2].split('/').pop()"/>
+                </a>
+                <div class="dropdown-menu" role="menu">
+                    <t t-foreach="languages" t-as="lg">
+                        <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code=lg[0])"
+                        class="dropdown-item js_change_lang"
+                        t-att-data-url_code="lg[1]">
+                            <t t-esc="lg[2].split('/').pop()"/>
+                        </a>
+                    </t>
+                    <t groups="website.group_website_publisher">
+                        <t t-set="url_return" t-value="quote_plus(url_for('', '[lang]') + '?' + keep_query())"/>
+                        <a class="dropdown-item" t-attf-href="/web#action=base.action_view_base_language_install&amp;website_id=#{website.id if website else ''}&amp;url_return=#{url_return}">
+                            <i class="lnr lnr-plus-circle"/>
+                            Add a language...
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </li>
+    </template>
+
+    <template id="component_account_info" name="Component Account Info">
+        <li t-if="show_search" class="list-inline-item">
+            <a href="#" class="tp-search-popover" t-att-data-search="search" data-placement="bottom" aria-label="Search">
+                <i class="lnr lnr-magnifier"/>
+            </a>
+        </li>
+        <li t-if="show_search_mobile or show_search_tablet" t-attf-class="list-inline-item #{show_search_mobile and 'd-md-none' or 'd-lg-none'}">
+            <a href="#" class="tp-search-popover" t-att-data-search="search" data-placement="bottom" aria-label="Search">
+                <i class="lnr lnr-magnifier"/>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <t t-set="website_sale_order" t-value="website.sale_get_order()" />
+            <!-- To work cart menu should be inside header -->
+            <header>
+                <a class="dr_sale_cart_sidebar o_wsale_my_cart" href="/shop/cart" aria-label="Cart">
+                    <i class="lnr lnr-cart"></i>
+                    <sup class="my_cart_quantity badge badge-primary mb-0 font-weight-bold" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" />
+                </a>
+            </header>
+        </li>
+        <li t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" class="list-inline-item">
+            <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
+            <!-- To work wishlist menu should be inside header -->
+            <header>
+                <a class="o_wsale_my_wish" href="/shop/wishlist" aria-label="Wishlist">
+                    <i class="lnr lnr-heart"></i>
+                    <sup class="my_wish_quantity o_animate_blink badge badge-primary mb-0 font-weight-bold" t-esc="wishcount or ''" />
+                </a>
+            </header>
+        </li>
+        <li t-if="request.website.viewref('portal.portal_show_sign_in').active" class="list-inline-item align-top">
+            <div class="dropdown" t-ignore="true" t-if="not user_id._is_public()">
+                <a t-if="request.website.viewref('theme_prime.option_show_user_avatar').active" href="#" class="dropdown-toggle d-block" data-toggle="dropdown" aria-label="Account Info">
+                    <img t-attf-src="/web/image/res.users/#{user_id.id}/image_128" class="rounded-circle tp_user_image" height="25" width="25" t-att-alt="user_id.name"/>
+                </a>
+                <a t-else="" href="#" class="dropdown-toggle d-block" data-toggle="dropdown" aria-label="Account Info">
+                    <i class="lnr lnr-user align-top"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="dropdown-header"><t t-esc="user_id.name"/></div>
+                    <a href="/my" role="menuitem" class="dropdown-item">My Account</a>
+                    <a href="/my/orders" role="menuitem" class="dropdown-item">Orders</a>
+                    <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                        Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/web/session/logout?redirect=/" role="menuitem" class="dropdown-item">Logout</a>
+                </div>
+            </div>
+            <div class="dropdown" groups="base.group_public">
+                <a href="#" class="dropdown-toggle d-block" data-toggle="dropdown" aria-label="Account Info">
+                    <i class="lnr lnr-user align-top"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="dropdown-header">Guest</div>
+                    <a href="/web/login" role="menuitem" class="dropdown-item">Login</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="/shop/cart" role="menuitem" class="dropdown-item">My Cart</a>
+                    <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                        Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                    </a>
+                </div>
+            </div>
+        </li>
+    </template>
+
+    <template id="d_search_input_category_dropdown" name="Search input dropdown">
+        <t t-set="drg_categories" t-value="website._get_website_category()"/>
+        <div class="dropdown show d_search_categ_dropdown" t-if="drg_categories">
+            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars mr-1"></i>
+                <span class="dr_active_text"> All </span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">All</a>
+                <t t-foreach="drg_categories" t-as="d_categ">
+                    <a class="dropdown-item" href="#" t-att-data-id="d_categ.id">
+                        <t t-esc="d_categ.name"/>
+                    </a>
+                </t>
+            </div>
+        </div>
+    </template>
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="combo_products_cart_view" inherit_id="website_sale.cart_lines">
+      <xpath expr="//table[@id='cart_products']//td[contains(@class, 'td-product_name')]" position="inside">
+        <t t-if="line.product_id.is_combo">
+            <div class="row mt8 ml0 mr0" style="border-bottom: 2px solid;">
+                <div class="col-8">Products</div>
+                <div class="col-4 text-center">Qty</div>
+            </div>
+            <div class="row" t-foreach="line.product_id.combo_product_id" t-as="combo_line">
+                <div class="col-8 text-muted">
+                    <t t-esc="combo_line.product_id.name"/>
+                </div>
+                <div class="col-4 text-muted text-center">
+                    <span><t t-esc="combo_line.product_quantity * line.product_uom_qty"/></span>
+                </div>
+            </div>
+        </t>
+      </xpath>
+    </template>
+
+    <template id="product_quantity" inherit_id="website_sale.product" customize_show="True" name="Select Quantity">
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <t t-if="product.is_combo">
+                <hr/>
+                <strong><span style="color:green;">Combo Product Includes :</span></strong>
+                <ul>
+                    <t t-foreach="product.combo_product_id" t-as="combo_line">
+                        <li class="text-muted">
+                            <t t-esc="combo_line.sudo().product_id.name"/>
+                        </li>
+                    </t>
+                </ul>
+            </t>                
+        </xpath>
+    </template>
+
+</odoo>

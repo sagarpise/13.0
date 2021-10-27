@@ -1,0 +1,242 @@
+@mixin dr-navbar-light-default {
+    background-color: gray('white') !important;
+    .navbar-brand {
+        color: $navbar-light-brand-color;
+        @include hover-focus {
+            color: $navbar-light-brand-hover-color;
+        }
+    }
+
+    .navbar-nav {
+        .nav-link {
+            color: $navbar-light-color;
+            @include hover-focus {
+                color: $navbar-light-hover-color;
+            }
+            &.disabled {
+                color: $navbar-light-disabled-color;
+            }
+        }
+        .show > .nav-link,
+        .active > .nav-link,
+        .nav-link.show,
+        .nav-link.active {
+            color: $navbar-light-active-color;
+        }
+    }
+
+    .navbar-toggler {
+        color: $navbar-light-color;
+        border-color: $navbar-light-toggler-border-color;
+    }
+
+    .navbar-toggler-icon {
+        background-image: $navbar-light-toggler-icon-bg;
+    }
+
+    .navbar-text {
+        color: $navbar-light-color;
+        a {
+            color: $navbar-light-active-color;
+            @include hover-focus {
+                color: $navbar-light-active-color;
+            }
+        }
+    }
+}
+
+// TODO: PGA: Improve this
+@function dark-light($color) {
+    $hue: hue($color);
+    $saturation: saturation($color);
+    $lightness: lightness($color);
+    $color-alpha: theme-color('alpha');
+
+    $range: 'dark';
+    @if ($lightness >= 80) {
+        $range:  'light';
+    }
+
+    @if ($hue >= 40deg and $hue <= 188deg and $lightness >= 50) {
+        $range:  'light';
+    }
+
+    @return $range;
+}
+
+@function has-contrast($fg, $bg) {
+    $fg-lightness: lightness($fg);
+    $bg-lightness: lightness($bg);
+
+    $fg-saturation: saturation($fg);
+    $bg-saturation: saturation($bg);
+
+    $range: false;
+    @if (abs($fg-lightness - $bg-lightness) > 35) {
+        @return true;
+    }
+    $light: abs($fg-lightness - $bg-lightness);
+    $sat: abs($fg-saturation - $bg-saturation);
+
+    @if ($light + $sat > 80) {
+        @return true;
+    }
+    @return $range;
+}
+
+@mixin dr-navbar-link-colors {
+
+    @if (dark-light(color('menu')) == 'dark') {
+        color: gray('white');
+        $new-color: gray('white');
+        @if (has-contrast(theme-color('alpha'), color('menu'))) {
+            $new-color: theme-color('alpha');
+        }
+        &:hover {
+            color: $new-color;
+        }
+        &.active {
+            color: $new-color;
+        }
+    }
+    @if (dark-light(color('menu')) == 'light') {
+        color:gray('black');
+        $new-color: gray('black');
+        @if (has-contrast(theme-color('alpha'), color('menu'))) {
+            $new-color: theme-color('alpha');
+        }
+        &:hover {
+            color: $new-color;
+        }
+        &.active {
+            color: $new-color;
+        }
+    }
+}
+
+@mixin dr-preheader-colors {
+    $preheader-yiq-color: color-yiq(color('preheader'));
+    @include o-bg-color(color('preheader'));
+    border-bottom: 1px solid rgba($preheader-yiq-color, 0.12);
+    a:not(.dropdown-item) {
+        color: $preheader-yiq-color;
+        &:hover {
+            color: theme-color('alpha');
+        }
+        @if (color-yiq(color('preheader')) == $yiq-text-light) {
+            color: gray('white');
+        }
+        @if (color('preheader') == theme-color('alpha')) {
+            color: gray('white');
+            &:hover {
+                color: gray('black');
+            }
+        }
+        // Primary is Black
+        @if (color('preheader') == theme-color('alpha')) {
+            @if (theme-color('alpha') == #000000) {
+                color: gray('white');
+                &:hover {
+                    color: gray('white');
+                }
+            }
+        }
+    }
+}
+
+@mixin dr-header-account-info-tablet {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: gray('white');
+    padding: 12px;
+    display: flex;
+    justify-content: space-around;
+    z-index: $zindex-fixed;
+    box-shadow: $box-shadow;
+}
+
+// Footer text color, link color, heading color, border, subscribe button
+@mixin dr-footer-colors {
+    $footer-yiq-color: color-yiq(color('footer'));
+    .o_footer {
+        border-top: 1px solid rgba($footer-yiq-color, 0.2);
+        color: rgba($footer-yiq-color, 0.6);
+        @if ($footer-yiq-color == $yiq-text-dark) {
+            color: $footer-yiq-color;
+        }
+        a:not(.dropdown-item):not(.js_subscribe_btn):not(.js_subscribed_btn) {
+            color: rgba($footer-yiq-color, 0.6);
+            @if ($footer-yiq-color == $yiq-text-dark) {
+                color: $footer-yiq-color;
+            }
+            &:hover {
+                color: theme-color('alpha');
+                // Primary is Black
+                @if (color('footer') == theme-color('alpha')) {
+                    @if (theme-color('alpha') == #000000) {
+                        color: gray('white');
+                    }
+                }
+            }
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: $footer-yiq-color;
+            @if ($footer-yiq-color == $yiq-text-dark) {
+                color: gray('black');
+            }
+        }
+        .js_subscribe .js_subscribe_email:not(.d-no-border) {
+            @if ($footer-yiq-color != $yiq-text-dark) {
+                border-color: rgba($footer-yiq-color, 0.2);
+                &:focus {
+                    border-color: theme-color('alpha');
+                }
+            }
+        }
+    }
+}
+
+@mixin tp-header-account-info-btns {
+    .tp-account-info {
+        .tp-account-info-item {
+            display: inline-block;
+            vertical-align: middle;
+            border-left: 1px solid $border-color;
+            .dropdown-toggle {
+                &:after {
+                    position: absolute;
+                    top: 30%;
+                    right: 10%;
+                }
+            }
+        }
+        .tp-header-navbar-btn {
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+            display: block;
+            .tp-header-navbar-btn-icon {
+                display: block;
+                font-size: 20px;
+                margin-top: 5px;
+                line-height: 20px;
+                color: rgba(0, 0, 0, 0.67);
+            }
+            sup {
+                position: absolute;
+                top: 7px;
+                right: 12px;
+                padding: 0.4em 0.6em;
+                border-radius: 40px;
+            }
+            .tp-header-navbar-btn-lable {
+                display: block;
+                margin-top: 7px;
+                font-size: .625rem;
+                color: rgba(0, 0, 0, 0.67);
+            }
+        }
+    }
+}

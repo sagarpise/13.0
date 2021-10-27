@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="footer_style_2" inherit_id="website.footer_custom" name="Footer Style 2" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-if="not no_footer">
+                <section class="s_text_block pt64 pb48">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-xl-3 mb-4">
+                                <a href="/">
+                                    <h6 t-field="website.name"/>
+                                </a>
+                                <t t-call="theme_prime.component_company_info"/>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-3 mb-4">
+                                <h6 class="mb-3">Opening Hours</h6>
+                                <ul class="list-unstyled">
+                                    <li class="my-2">
+                                        Mon 10:00 AM - 7:00 PM
+                                    </li>
+                                    <li class="my-2">
+                                        Tue 10:00 AM - 7:00 PM
+                                    </li>
+                                    <li class="my-2">
+                                        Wed 10:00 AM - 7:00 PM
+                                    </li>
+                                    <li class="my-2">
+                                        Thu 10:00 AM - 7:00 PM
+                                    </li>
+                                    <li class="my-2">
+                                        Fri 10:00 AM - 7:00 PM
+                                    </li>
+                                    <li class="my-2">
+                                        Sat &amp; Sun Closed
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-3 mb-4">
+                                <h6 class="mb-3">
+                                    Useful Links
+                                </h6>
+                                <ul class="list-unstyled">
+                                    <li class="my-2">
+                                        <a href="#">Blog</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="#">Community</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="#">Forums</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="#">Pricing and Plans</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="#">Careers</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="#">FAQ</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-3 mb-4">
+                                <h6 class="mb-3">
+                                    About Us
+                                </h6>
+                                <ul class="list-unstyled">
+                                    <li class="my-2">
+                                        <a href="#">All services</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="/aboutus">About Us</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="/contactus">Contact Us</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="#">Privacy Policy</a>
+                                    </li>
+                                    <li class="my-2">
+                                        <a href="#">Terms of Use</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('o_footer_copyright')]" position="replace">
+            <div class="o_footer_copyright">
+                <div class="container my-2">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-auto mb-2 mb-lg-0 text-center text-lg-left">
+                            <span>Copyright &amp;copy;</span> <span t-field="res_company.name" itemprop="name">Company name</span>
+                        </div>
+                        <div class="col-lg-auto mb-2 mb-lg-0 text-center">
+                            <t t-call="theme_prime.component_social_share">
+                                <t t-set="_classes" t-value="'list-inline m-0'"/>
+                            </t>
+                        </div>
+                        <div t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))" class="col-lg-auto text-center text-lg-right">
+                            <ul class="list-inline m-0">
+                                <t t-call="theme_prime.component_language"/>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

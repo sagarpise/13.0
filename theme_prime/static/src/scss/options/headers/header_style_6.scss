@@ -1,0 +1,111 @@
+@include media-breakpoint-up(md) {
+    #wrapwrap.homepage, #wrapwrap.o_header_overlay {
+        > header:not(.o_header_affix) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: auto;
+            right: 0;
+            z-index: 1000;
+            margin: 2rem;
+            @include media-breakpoint-up(xl) {
+                margin: 25px auto;
+                max-width: 1400px;
+                width: 90%;
+            }
+            > .navbar {
+                background-color: rgba(color('menu'), 0.80) !important;
+                padding: 0.4rem;
+                border-radius: $border-radius;
+                box-shadow: $box-shadow-sm;
+                > .container {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    #wrapwrap.o_header_overlay > header:not(.o_header_affix) {
+        position: relative;
+        > .navbar {
+            background-color: rgba(color('menu'), 0.80) !important;
+            @include media-breakpoint-down(sm) {
+                background-color: color('menu') !important;
+            }
+        }
+    }
+}
+
+// Transparent option + mega menu + navbar background color black
+#wrapwrap.o_header_overlay > header:not(.o_header_affix) > .navbar .nav-item.show > .nav-link {
+    background-color: transparent;
+}
+
+#wrapwrap {
+    > header {
+        box-shadow: $box-shadow-sm;
+        > .navbar {
+            .tp-account-info {
+                font-family: $font-family-base;
+                a:not(.dropdown-item){
+                    color: $navbar-light-color;
+                    &:hover {
+                        color: theme-color('alpha');
+                    }
+                    @if (color-yiq(color('menu')) != $yiq-text-dark) {
+                        color: gray('white');
+                        &:hover {
+                            color: theme-color('alpha');
+                        }
+                    }
+                    @if (color('menu') == theme-color('alpha')) {
+                        color: gray('black');
+                        &:hover {
+                            color: gray('white');
+                        }
+                    }
+                }
+                .my_wish_quantity, .my_cart_quantity {
+                    padding: 0.4em 0.6em;
+                    border-radius: 40px;
+                    vertical-align: top;
+                }
+                @include dr-font-icons {
+                    font-size: 1.4rem;
+                }
+            }
+            #top_menu {
+                margin-left: 0px !important;
+                > .nav-item {
+                    padding-left: 0.8rem;
+                    padding-right: 0.8rem;
+                    // Special Menu
+                    @include media-breakpoint-up(md) {
+                        &.dr_special_menu {
+                            background-color: theme-color('alpha');
+                            box-shadow: $box-shadow;
+                            border-radius: 0.25rem;
+                            > .nav-link {
+                                color: color-yiq(theme-color('alpha'));
+                                &:hover, &:focus {
+                                    color: color-yiq(theme-color('alpha'));
+                                }
+                            }
+                        }
+                    }
+                    > .nav-link {
+                        @include dr-navbar-link-colors();
+                        padding-top: 0.6rem;
+                        padding-bottom: 0.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+$dr-header-height: 0px;
+$dr-pre-header-height: 0px;
+$dr-mobile-bottom-cart: 0px;

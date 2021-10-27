@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="header_style_1" inherit_id="portal.frontend_layout" name="Header Style 1" active="False">
+        <!-- Remove User account menu -->
+        <xpath expr="//ul[@id='top_menu']/li[hasclass('dropdown')]" position="replace">
+        </xpath>
+        <!-- Remove cart menu -->
+        <xpath expr="//ul[@id='top_menu']/li[contains(@t-attf-class, 'o_wsale_my_cart')]" position="replace">
+        </xpath>
+        <!-- Remove wishlist menu -->
+        <xpath expr="//ul[@id='top_menu']//li[hasclass('o_wsale_my_wish')]" position="replace">
+        </xpath>
+        <!-- Remove divider menu -->
+        <xpath expr="//ul[@id='top_menu']/li[hasclass('divider')]" position="replace"/>
+        <xpath expr="//ul[@id='top_menu']/li[hasclass('divider')]" position="replace"/>
+        <xpath expr="//div[@id='wrapwrap']/header//button[hasclass('navbar-toggler')]" position="replace">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#top_menu_collapse">
+                <span class="icon-bar top-bar"></span>
+                <span class="icon-bar middle-bar"></span>
+                <span class="icon-bar bottom-bar"></span>
+            </button>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']/header" position="before">
+            <t t-call="theme_prime.tp_mobile_toolbar">
+                <t t-set="_classes" t-value="'dr_not_in_navbar'"/>
+                <t t-set="_ul_classes" t-value="'tp-tablet-hide-bottom-reached'"/>
+            </t>
+            <div class="tp_preheader">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-auto d-none d-xl-block">
+                            <t t-call="theme_prime.component_social_share">
+                                <t t-set="_classes" t-value="'list-inline py-3 mb-0'"/>
+                            </t>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <ul class="list-inline py-3 mb-0">
+                                <li t-if="res_company.phone" class="list-inline-item">
+                                    <a t-attf-href="tel:#{res_company.phone}"><span class="lnr lnr-phone-handset"/> <span t-field="res_company.phone"/></a>
+                                </li>
+                                <li t-if="res_company.email" class="list-inline-item">
+                                    <a t-attf-href="mailto:#{res_company.email}"><span class="lnr lnr-envelope"/> <span t-field="res_company.email"/></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-auto">
+                            <ul class="list-inline py-3 mb-0">
+                                <t t-call="theme_prime.component_pricelist">
+                                    <t t-set="_classes" t-value="'tp_hide_in_mobile'"/>
+                                </t>
+                                <t t-call="theme_prime.component_language"/>
+                            </ul>
+                        </div>
+                        <div class="col-auto">
+                            <ul class="list-inline py-3 mb-0 tp-account-info tp_hide_in_mobile">
+                                <t t-call="theme_prime.component_account_info">
+                                    <t t-set="show_search" t-value="True"/>
+                                </t>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

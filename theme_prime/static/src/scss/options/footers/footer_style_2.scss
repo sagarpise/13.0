@@ -1,0 +1,7 @@
+@include dr-footer-colors();
+
+.o_footer {
+    .o_footer_copyright {
+        background-color: darken(color('footer'), 3%);
+    }
+}

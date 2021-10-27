@@ -1,0 +1,16 @@
+@include dr-footer-colors();
+
+.o_footer {
+    .logo.img {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    .o_footer_copyright {
+        .tp-followus-icon {
+            @include dr-font-icons {
+                font-size: 1.2rem;
+                margin-right: 0.8rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.d_search_categ_dropdown {
+    display: none !important;
+}
+
+.dr_custom_search {
+    .search_icon {
+        display: block !important;
+        position: absolute;
+        left: 15px;
+        color: theme-color('alpha');
+        z-index: 5;
+        font-size: 17px;
+        top: 14px;
+        top: 48%;
+        transform: translateY(-50%);
+    }
+    input {
+        padding-left: 38px !important;
+    }
+    .d_search_input_text {
+        display: block !important;
+    }
+    .d_btn_search_icon {
+        display: none !important;
+    }
+}

@@ -1,0 +1,159 @@
+html {
+    scroll-behavior: smooth;
+}
+
+//------------------------------------------------------------------------------
+// Utilities classes
+//------------------------------------------------------------------------------
+.hover-color-primary {
+    transition: 0.2s;
+    &:hover {
+        color: theme-color('alpha') !important;
+    }
+}
+
+#wrapwrap {
+    .dr-mobile-center {
+        @include media-breakpoint-down(md) {
+            text-align: center !important;
+        }
+    }
+
+}
+//------------------------------------------------------------------------------
+// Text selection
+//------------------------------------------------------------------------------
+::selection {
+    background: rgba(theme-color('primary'), .2);
+}
+::-moz-selection {
+    background: rgba(theme-color('primary'), .2);
+}
+
+//------------------------------------------------------------------------------
+// Pager
+//------------------------------------------------------------------------------
+.page-link {
+    border-radius: $border-radius;
+    margin: auto 3px;
+}
+
+//------------------------------------------------------------------------------
+// Dropdown
+//------------------------------------------------------------------------------
+%tp-dropdown-toggle {
+    font-family: FontAwesome;
+    border: 0;
+    vertical-align: initial;
+}
+.dropleft .dropdown-toggle::before {
+    content: "\f104";
+    @extend %tp-dropdown-toggle;
+}
+.dropright .dropdown-toggle::after {
+    content: "\f105";
+    @extend %tp-dropdown-toggle;
+}
+.dropup .dropdown-toggle::after {
+    content: "\f106";
+    @extend %tp-dropdown-toggle;
+}
+.dropdown-toggle::after {
+    content: "\f107";
+    @extend %tp-dropdown-toggle;
+}
+.dropdown-menu {
+    box-shadow: $dropdown-box-shadow;
+}
+
+//------------------------------------------------------------------------------
+// Breadcrumb
+//------------------------------------------------------------------------------
+.breadcrumb {
+    .breadcrumb-item {
+        + .breadcrumb-item::before {
+            content: "\f105";
+            font: normal normal normal 14px/1 FontAwesome;
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// Owl Carousal
+//------------------------------------------------------------------------------
+.owl-theme .owl-nav [class*='owl-']:hover {
+    background-color: transparent !important;
+}
+
+//------------------------------------------------------------------------------
+// Owl RTL
+//------------------------------------------------------------------------------
+.owl-carousel.owl-rtl .owl-item {
+    float: left !important;
+}
+.owl-carousel.owl-rtl {
+    direction: ltr !important;
+}
+
+
+//------------------------------------------------------------------------------
+// Nav Search By category
+//------------------------------------------------------------------------------
+.d_search_categ_dropdown > .btn {
+    background-color: #f0f0f0 !important;
+    color: #505050 !important;
+    border-color: $input-border-color !important;
+    border-right: 0px !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .dr_active_text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 120px;
+        display: inline-block;
+    }
+    &:hover {
+        background-color: #ebebeb !important;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Shop buttons
+//------------------------------------------------------------------------------
+
+.o_wsale_apply_layout {
+    label {
+        border-color: rgb(207, 207, 207) !important;
+        color: rgba(137, 137, 137, 0.4) !important;
+        background: rgba(159, 160, 164, 0.15) !important;
+        &.active {
+            background-color: white !important;
+            color: theme-color('primary') !important;
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+// Layout Changes
+//------------------------------------------------------------------------------
+
+@mixin set_container_width($width){
+    @media (min-width: $width) {
+        $max-width: $width * 93 / 100;
+        .container {
+            max-width: $max-width;
+        }
+        .o_mega_menu_container_size {
+            max-width: $max-width - $grid-gutter-width;
+        }
+    }
+}
+
+@include set_container_width(1200px);
+@include set_container_width(1240px);  // for 1280x800
+@include set_container_width(1300px);  // for 1356x768
+@include set_container_width(1400px);  // for 1440x900
+@include set_container_width(1505px);  // To make max width 1400 px

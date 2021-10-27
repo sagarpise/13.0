@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+         <record id="product_qa_view__form" model="ir.ui.view">
+            <field name="name">wwwww.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                 
+                <xpath expr="//form/sheet/notebook" position="inside">
+                  <page string="Q and A">
+                    <field name="qa">
+                        <tree>
+                            <field name="question"/>
+                            <field name="sequence_number"/>
+                            <field name="state"/>
+                            <field name="create_date"/>
+                        </tree>
+                    </field>  
+                </page>
+                </xpath>
+            </field> 
+        </record>
+        <record id="qa_product_form1_view" model="ir.ui.view">
+            <field name="name">wk.product.qa.form</field>
+            <field name="model">wk.product.qa</field>
+            <field name="arch" type="xml">
+                <form string="Product Q A" >
+                    <header>
+                        <button name="answer_state" string="Post and Publish" type="object" states="draft,pending" class="oe_highlight"/>
+                        <button name="pending_state" string="Set to Pending" type="object" states="draft" class="oe_highlight"/>
+                        <button name="secret_state" string="Post Secret" type="object" states="draft,pending" class="oe_highlight"/>
+                        <button name="cancel_state" string="Cancel" type="object" states="draft,answered,pending" class="oe_highlight"/>
+                        <button name="undo_state" string="Undo" type="object" states="cancel" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="answered,cancel" />
+                    </header> 
+                    <sheet>
+                        <group col='4'>
+                            <field name="sequence_number"/> 
+                            <field name="asked_by"/>
+                            <field name="template_id" readonly="1"/>
+                        </group> 
+                        <group>
+                            <label for="question"/>
+                            <field name="question" nolabel="1"/>
+                            <label for="description" />
+                            <field name="description" nolabel="1"/>
+                            <label for="answer"/>
+                            <field name="answer" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="qa_product_tree_view" model="ir.ui.view">
+            <field name="name">wk.product.qa.tree</field>
+            <field name="model">wk.product.qa</field>
+            <field name="arch" type="xml">
+                <tree string="Product Q A" decoration-warning="state in ('undo')" decoration-info="state=='pending'" decoration-danger="state in ('cancel')"  decoration-success="state=='answered'" >
+                    <field name="question"/> 
+                    <field name="asked_by"/>
+                    <field name="sequence_number"/>
+                    <field name="state"/>
+   
+                </tree>
+            </field>
+        </record>
+        <record id="view_product_search" model="ir.ui.view">
+            <field name="name">wk.product.qa.search</field>
+            <field name="model">wk.product.qa</field>
+            <field name="arch" type="xml">
+                 <search string="group">
+                   <filter name="group_question_id" string="State" icon="terp-partner" context="{'group_by':'state'}"/>  
+                </search>
+            </field>
+        </record>
+        <record id="draft_qa_product_action" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wk.product.qa</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','draft')]</field>
+
+            <field name="view_id" ref="qa_product_tree_view"/>
+        </record>
+        <record id="pending_qa_product_action" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wk.product.qa</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','pending')]</field>
+            <field name="view_id" ref="qa_product_tree_view"/>
+        </record>
+        <record id="all_qa_product_action" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wk.product.qa</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="search_view_id" ref="view_product_search"/> -->
+           <field name="context">{"search_default_group_question_id":1}</field>
+
+            <field name="view_id" ref="qa_product_tree_view"/> 
+
+        </record>
+        <menuitem 
+            id="menu_product_qa" name="Website Q&amp;A"
+            parent="website.menu_website_configuration"/>
+        <menuitem action="draft_qa_product_action"
+            id="menu_product_qa1" name="New question"
+            parent="menu_product_qa" />
+        <menuitem action="pending_qa_product_action"
+            id="menu_product_qa2" name="Pending question"
+            parent="menu_product_qa" />
+        <menuitem action="all_qa_product_action"
+            id="menu_product_qa3" name="All question"
+            parent="menu_product_qa" />
+
+    </data>
+</odoo>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <!-- <record id="product_brand_tree_view" model="ir.ui.view">
+        <field name="name">product.brand.tree.view</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+           <tree string="Product Brand Details">													
+					<field name="name"/>
+					<field name="seq"/>
+					<field name="tot_items"/>
+			</tree>
+			</field>
+         </record> -->
+    
+    
+    
+<!--     <record id="product_brand_form_view" model="ir.ui.view">
+            <field name="name">product.brand.form.view</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+				<form string="Product Brand Details" >
+					<sheet>
+						<field name="image" widget="image" class="oe_avatar"/>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="seq"/>
+								<field name="tot_items"/>
+							</group>
+							<group>
+							</group>
+						</group>
+						<notebook>
+							<page string='Products' autofocus="autofocus">
+								<field name="product_ids" mode="kanban">
+								<kanban>
+									<field name="id"/>
+									<field name="name"/>
+                                    <field name="type"/>
+                                    <field name="default_code"/>
+                                    
+                                    <templates>
+                                    <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_click">
+                                    	<a t-if="!read_only_mode" type="delete" class="fa fa-times pull-right"/>
+		                                <div class="o_kanban_image">
+				                            <img t-att-src="kanban_image('product.template', 'image', record.id.value)"/>
+				                        </div>
+				                        <div class="oe_kanban_details">
+		                                <strong>
+		                                    <field name="name"/>
+		                                </strong>
+		                                <ul>
+		                                    <li>Type: <field name="type"></field></li>
+		                                    <li>Internal Reference: <field name="default_code"></field></li>
+		                                </ul>
+		                            	</div>
+                            		</div>
+                                    </t>
+                                    </templates>
+                                </kanban>
+									<tree string="Products">
+										<field name="name"/>
+										<field name="brand_id" invisible="1"/>
+									</tree> 
+								</field>
+							</page>
+							
+						</notebook>	
+					</sheet>
+				</form>
+            </field>
+        </record> -->
+        
+        <record id="product.product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+		        <tree string="Product">
+		            <field name="sequence" widget="handle"/>
+		            <field name="default_code"/>
+		            <field name="barcode"/>
+		            <field name="name"/>
+		            <field name="brand_id"/>
+		            <field name="list_price"/>
+		            <field name="standard_price"/>
+		            <field name="categ_id"/>
+		            <field name="type"/>
+		            <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="product.group_uom"/>
+		            <field name="active" invisible="1"/>
+		        </tree>
+		    </field>
+		</record>
+		
+		<record id="product.product_product_tree_view" model="ir.ui.view">
+            <field name="name">product.product.tree</field>
+            <field name="model">product.product</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+
+                <tree string="Product Variants">
+                    <field name="default_code"/>
+                    <field name="barcode"/>
+                    <field name="name"/>
+                    <field name="brand_id"/>
+                    <field name="attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant"/>
+                    <field name="lst_price"/>
+                    <field name="price" invisible="not context.get('pricelist',False)"/>
+                    <field name="categ_id"/>
+                    <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="product.group_uom"/>
+                    <field name="product_tmpl_id" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="product.product_template_kanban_view" model="ir.ui.view">
+        <field name="name">Product.template.product.kanban</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <kanban>
+            	<field name="id"/>
+                <field name="image_small"/>
+                <field name="lst_price"/>
+                <field name="product_variant_count"/>
+                <field name="product_variant_ids"/>
+                <field name="currency_id"/>
+                <field name="brand_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('product.template', 'image_small', record.id.value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <span t-if="record.default_code.value">[<field name="default_code"/>]</span>
+                                    <field name="name"/>
+                                </strong>
+                                <div t-if="record.product_variant_count.value &gt; 1" groups="product.group_product_variant">
+                                    <strong>
+                                        <t t-esc="record.product_variant_count.value"/> Variants
+                                    </strong>
+                                </div>
+                                <div name="tags"/>
+                                <ul>
+                                    <li>Price: <field name="lst_price" widget="monetary"></field></li>
+                                </ul>
+                                <div name="tags"/>
+                                <ul>
+                                    <li>Brand: <field name="brand_id"></field></li>
+                                </ul>
+                                <div name="tags"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_product_kanban">
+            <field name="name">view.product.kanban</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_small_column">
+                	<field name="id"/>
+                    <field name="name"/>
+                    <field name="default_code"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('product.template', 'image_small', record.id.value)"/>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <strong><field name="name"/></strong>
+                                    
+                                </div>
+                                <div>
+                                <!--strong>
+                                    <span t-if="record.default_code">[<field name="default_code"/>]</span>
+                                    <field name="name"/>
+                                </strong-->
+                                
+                                <strong><field name="default_code"/></strong>
+                                </div>
+                            </div>
+                                
+                        </div>
+                    </t>
+                    </templates>
+                </kanban>
+            </field>
+         </record>
+    <record id="act_product_under_brand" model="ir.actions.act_window">
+		    <field name="name">Products by Brand</field>
+		    <field name="res_model">product.template</field>
+		    <field name="view_mode">kanban</field>
+		    <field name="context">{
+		        'group_by': 'brand_id',
+		    }</field>
+		    <field name="view_id" ref="view_product_kanban"/>
+		    
+		</record>
+        
+        <!-- <record model="ir.ui.view" id="product_brand_kanban_view_bi">
+            <field name="name">product.brand.kanban.view.bi</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban" >
+                	<field name="id"/>
+                    <field name="image" widget="image" class="oe_left oe_avatar"/>
+                    <field name="name"/>
+					<field name="seq"/>
+					<field name="tot_items"/>
+					
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                            	
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('product.brand', 'image', record.id.value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                    <ul>
+                                        <li>Sequence: <field name="seq"></field></li>
+                                        <li>total items: <field name="tot_items"></field></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="o_project_kanban_boxes">
+                                    
+                                    <a name="%(act_product_under_brand)d" type="action">
+                                     
+                                    </a>
+                                </div>
+                            </div>
+                        </t>
+                   </templates>
+                    
+                </kanban>
+            </field>
+        </record> -->
+        
+        <record id="sale.view_order_product_search" model="ir.ui.view">
+        <field name="name">sale.report.search</field>
+        <field name="model">sale.report</field>
+        <field name="arch" type="xml">
+            <search string="Sales Analysis">
+                <field name="date"/>
+                <filter string="This Year" name="year" invisible="1" domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter name="Quotations" string="Quotations" domain="[('state','in', ('draft', 'sent'))]"/>
+                <filter name="Sales" string="Sales" domain="[('state','not in',('draft', 'cancel', 'sent'))]"/>
+                <separator/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="user_id"/>
+                <group expand="0" string="Extended Filters">
+                    <field name="categ_id" filter_domain="[('categ_id', 'child_of', self)]"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+                <group expand="1" string="Group By">
+                    <filter string="Salesperson" name="User" context="{'group_by':'user_id'}"/>
+                    <filter string="Sales Team" context="{'group_by':'team_id'}"/>
+                    <filter string="Product Brand" context="{'group_by':'brand_id'}"/>
+                    <filter string="Partner's Country" name="country_id" context="{'group_by':'country_id'}"/>
+                    <filter string="Customer" name="Customer" context="{'group_by':'partner_id'}"/>
+                    <filter string="Product Category" name="Category" context="{'group_by':'categ_id'}"/>
+                    <filter name="status" string="Status" context="{'group_by':'state'}"/>
+                    <filter string="Company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+                    <separator/>
+                    <filter string="Order Month" context="{'group_by':'date:month'}" help="Ordered date of the sales order"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="point_of_sale.view_report_pos_order_search" model="ir.ui.view">
+            <field name="name">report.pos.order.search</field>
+            <field name="model">report.pos.order</field>
+            <field name="arch" type="xml">
+                <search string="Point of Sale Analysis">
+                    <field name="date"/>
+                    <filter string="Invoiced" domain="[('state','=',('invoiced'))]"/>
+                    <filter string="Not Invoiced" domain="[('state','=',('paid'))]"/>
+                    <separator/>
+                    <filter string="Year" name="year" domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]" help="POS ordered created during current year"/>
+                    <separator/>
+                    <filter string="My Sales" help="My Sales" domain="[('user_id','=',uid)]"/>
+                    <field name="config_id"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="product_id"/>
+                    <field name="product_categ_id"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Salesperson" name="User" context="{'group_by':'user_id'}"/>
+                        <filter string="Product Category" context="{'group_by':'product_categ_id'}"/>
+                        <filter string="Product Brand" context="{'group_by':'brand_id'}"/>
+                        <filter string="Product" context="{'group_by':'product_id'}"/>
+                        <separator/>
+                        <filter string="Order Month" context="{'group_by':'date:month'}" help="Month of order date"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+<!--         <record id="action_product_brand" model="ir.actions.act_window">
+            <field name="name">Product Brand</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.brand</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+        
+        <menuitem parent="stock.menu_stock_root" name="Product Brands" id="menu_product_brands" sequence="30"/>
+        <menuitem parent="menu_product_brands" name="All Brands" id="menu_product_all_brands" action="action_product_brand"/>
+        <menuitem parent="menu_product_brands" name="Products by Brands" id="menu_product_by_all_brands" action="act_product_under_brand"/> -->
+        
+    </data>
+</odoo>        

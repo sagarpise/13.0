@@ -1,0 +1,50 @@
+// Avoid Header and footer and add selector for quick view dialog because it's append to body
+$dr_btn_style_selector: '#wrapwrap #wrap .btn:not(.disabled):not(.btn-link), .d_website_sale .btn:not(.disabled):not(.btn-link)';
+
+// Style -1
+
+@mixin dr-btn-style-1() {
+    &:hover,&:focus {
+        box-shadow: 0 4px 10px 0 rgba(0,0,0,0.18), 0 3px 14px 0 rgba(0,0,0,0.15);
+    }
+}
+
+// Style -2
+
+@mixin dr-btn-style-2() {
+    transition: box-shadow .25s ease;
+    &:hover,&:focus {
+        box-shadow: 0 1rem 2.5rem rgba(22, 28, 45, 0.1), 0 0.5rem 1rem -0.75rem rgba(22, 28, 45, 0.1) !important;
+    }
+}
+// Style -3
+
+@mixin dr-btn-style-3() {
+    box-shadow: 0 1.15rem 1.75rem -0.4rem rgba(0,0,0,0.15);
+    &:hover,&:focus {
+        box-shadow: none;
+    }
+}
+// Style -4
+
+@mixin dr-btn-style-4() {
+    @each $color, $value in $theme-colors {
+        &.btn-#{$color} {
+            box-shadow: 0 .6rem 1.1rem -.6rem rgba($value, .9);
+        }
+    }
+    &:hover {
+        box-shadow: none;
+    }
+}
+// Style - 5
+
+@mixin dr-btn-style-5() {
+    @each $color, $value in $theme-colors {
+        &.btn-#{$color} {
+            &:hover {
+                box-shadow: 0 .6rem 1.1rem -.6rem rgba($value, .9);
+            }
+        }
+    }
+}

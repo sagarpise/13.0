@@ -1,0 +1,107 @@
+#wrapwrap {
+    > header {
+        box-shadow: $box-shadow-sm;
+        > .navbar {
+            @include dr-navbar-light-default();
+            .tp-account-info {
+                font-family: $font-family-base;
+                a:not(.dropdown-item){
+                    color: gray('900');
+                    .badge-primary {
+                        background-color: gray('900');
+                    }
+                    &:hover {
+                        color: darken(theme-color('alpha'), 10%);
+                    }
+                }
+                .my_wish_quantity, .my_cart_quantity {
+                    padding: 0.4em 0.6em;
+                    border-radius: 40px;
+                    vertical-align: top;
+                }
+                @include dr-font-icons {
+                    font-size: 1.4rem;
+                }
+                .dropdown-menu {
+                    right: 0;
+                    left: auto;
+                }
+            }
+            #top_menu {
+                margin: auto;
+                > .nav-item {
+                    padding-left: 0.6rem;
+                    padding-right: 0.6rem;
+                    > .nav-link {
+                        padding-top: 0.6rem;
+                        padding-bottom: 0.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#wrapwrap.o_header_overlay > header:not(.o_header_affix) {
+    @include media-breakpoint-down(sm) {
+        position: relative;
+    }
+    > .navbar {
+        @include dr-navbar-light-default();
+    }
+}
+
+// Transparent option + mega menu + navbar background color black
+#wrapwrap.o_header_overlay > header:not(.o_header_affix) > .navbar .nav-item.show > .nav-link {
+    background-color: transparent;
+}
+
+@include media-breakpoint-up(md) {
+    #wrapwrap.homepage, #wrapwrap.o_header_overlay {
+        > header:not(.o_header_affix) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: auto;
+            right: 0;
+            z-index: 1000;
+            box-shadow: none;
+            > .navbar {
+                background-color: transparent !important;
+                #top_menu_collapse {
+                    #top_menu {
+                        > .nav-item > .nav-link {
+                            color: gray('900');
+                            &.active, &:hover {
+                                color: gray('900');
+                            }
+                            @include media-breakpoint-up(lg) {
+                                padding: 1rem 0.4rem;
+                                position: relative;
+                                &:before {
+                                    position: absolute;
+                                    content: "";
+                                    left: 50%;
+                                    right: 50%;
+                                    height: 3px;
+                                    bottom: 0;
+                                    background-color: $navbar-light-color;
+                                    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                                    transform: translate3d(0, 0, 0);
+                                }
+                                &:hover:before {
+                                    left: 0;
+                                    right: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+$dr-header-height: 0px;
+$dr-pre-header-height: 0px;
+$dr-mobile-bottom-cart: 0px;

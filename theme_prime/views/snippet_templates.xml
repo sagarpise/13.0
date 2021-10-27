@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="snippets" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_mega_menu']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="droggol_theme_common.s_mega_menu_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_1.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_2.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_3.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_4.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_5.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_6" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_6.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_7" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_7.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_8" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_8.png"/>
+            <t t-snippet="droggol_theme_common.s_mega_menu_9" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_9.png"/>
+            <t t-snippet="droggol_theme_common.s_d_category_mega_menu_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_cate_2.png"/>
+            <t t-snippet="droggol_theme_common.s_d_category_mega_menu_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_cate_1.png"/>
+            <t t-snippet="droggol_theme_common.s_d_category_mega_menu_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_mega_menu_cate_1.png"/>
+        </xpath>
+        <xpath expr="//div[@id='snippet_structure']" position="before">
+            <div id="snippet_offer" class="o_panel d-none">
+                <div class="o_panel_header">
+                    <i class="fa fa-percent"/> Offer
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_offer_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_offer_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_offer_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_offer_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_offer_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_offer_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_offer_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_offer_4.png"/>
+                </div>
+            </div>
+            <div id="snippet_category" class="o_panel d-none">
+                <div class="o_panel_header">
+                    <i class="fa fa-image"/> Shop Category
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_category_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_category_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_category_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_category_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_category_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_category_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_category_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_category_4.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_dynamic_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-cogs"/> Dynamic Snippets
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_d_single_product_count_down" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_countdown.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_products_snippet" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_prooduct_cards.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_category_snippet" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_category_tab.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_single_category_snippet" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_single_category.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_single_product_snippet" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_full.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_single_product_cover_snippet" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_full.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_top_categories" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_top_category.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_products_collection" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_products_collection.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_custom_collection" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_custom_collection.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_2_column_snippet" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_2_columns.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_image_products_block" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_img.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_img_collection" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_product_img.png"/>
+                    <t t-snippet="droggol_theme_common.s_coming_soon_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_coming_soon.png"/>
+                    <t t-snippet="droggol_theme_common.s_coming_soon_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_coming_soon.png"/>
+                    <t t-snippet="droggol_theme_common.s_d_brand_snippet" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_products_brands.png"/>
+                    <t t-snippet="droggol_theme_common.dr_blog_snippet_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_blog_snippet_1.png"/>
+                    <t t-snippet="droggol_theme_common.dr_blog_snippet_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_blog_snippet_2.png"/>
+                    <t t-snippet="droggol_theme_common.dr_blog_snippet_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_blog_snippet_2.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_cover_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-picture-o"/>
+                    Hero Elements
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_cover_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_cover_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_cover_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_cover_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_cover_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_cover_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_cover_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_cover_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_cover_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_cover_5.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_heading_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-header"/>
+                    Heading
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_heading_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_heading_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_heading_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_heading_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_heading_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_heading_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_heading_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_heading_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_heading_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_heading_5.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_banner_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-picture-o"/> Banner
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_banner_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_5.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_6" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_6.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_7" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_7.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_8" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_8.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_9" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_9.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_10" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_10.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_11" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_11.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_12" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_banner_13" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_banner_3.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_animation_blocks_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-picture-o"/> Animation Blocks
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_animation_block_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_animation_block_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_animation_block_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_animation_block_1.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_cta_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-flag-o"/> CTA
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_call_to_action_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_call_to_action_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_call_to_action_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_call_to_action_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_call_to_action_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_call_to_action_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_call_to_action_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_call_to_action_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_call_to_action_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_call_to_action_5.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_clients_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-users"/> Clients
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_clients_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_clients_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_clients_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_clients_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_clients_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_clients_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_clients_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_clients_4.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_countdown_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-clock-o"/> Countdown
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_countdown_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_countdown_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_countdown_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_countdown_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_countdown_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_countdown_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_countdown_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_countdown_4.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_counter_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-list-ol"/> Counter
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_counters_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_counters_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_counters_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_counters_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_counters_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_counters_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_counters_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_counters_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_counters_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_counters_5.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_gallery_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-picture-o"/> Gallery
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_gallery_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_gallery_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_gallery_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_gallery_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_gallery_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_gallery_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_gallery_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_gallery_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_gallery_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_gallery_5.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_icon_block_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-th-large"/> Icon Block
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_icon_block_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_5.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_6" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_6.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_7" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_7.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_8" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_8.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_9" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_9.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_10" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_10.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_11" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_11.png"/>
+                    <t t-snippet="droggol_theme_common.s_icon_block_12" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_icon_block_12.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_info_block_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-info"/> Info Block
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_info_block_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_info_block_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_info_block_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_info_block_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_info_block_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_info_block_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_info_block_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_info_block_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_info_block_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_info_block_5.png"/>
+                    <t t-snippet="droggol_theme_common.s_info_block_6" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_info_block_6.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_pricing_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-money"/> Pricing
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_pricing_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_pricing_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_pricing_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_pricing_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_pricing_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_pricing_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_pricing_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_pricing_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_pricing_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_pricing_5.png"/>
+                    <t t-snippet="droggol_theme_common.s_pricing_6" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_pricing_6.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_subscribe_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-send-o"/> Subscribe
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_subscribe_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_subscribe_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_subscribe_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_subscribe_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_subscribe_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_subscribe_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_subscribe_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_subscribe_1.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_team_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-user-circle-o"/> Team
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_team_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_team_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_team_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_team_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_team_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_team_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_team_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_team_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_team_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_team_5.png"/>
+                </div>
+            </div>
+            <div id="theme_droggol_testimonial_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-quote-left"/> Testimonial
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_testimonial_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_testimonial_1.png"/>
+                    <t t-snippet="droggol_theme_common.s_testimonial_2" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_testimonial_2.png"/>
+                    <t t-snippet="droggol_theme_common.s_testimonial_3" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_testimonial_3.png"/>
+                    <t t-snippet="droggol_theme_common.s_testimonial_4" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_testimonial_4.png"/>
+                    <t t-snippet="droggol_theme_common.s_testimonial_5" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_testimonial_5.png"/>
+                </div>
+            </div>
+            <!-- <div id="theme_droggol_video_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-video-camera"/> Video
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_video_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_video_1.png"/>
+                </div>
+            </div> -->
+            <div id="theme_droggol_map_snippets" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-map-marker"/> Map
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="droggol_theme_common.s_google_map_1" t-thumbnail="/droggol_theme_common/static/src/img/snippets_thumbs/s_google_map_1.png"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Generic Options -->
+    <template id="s_options" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='parallax']" position="attributes">
+            <attribute name="data-exclude" add=".s_no_parallax_speed"/>
+        </xpath>
+        <xpath expr="//div[@data-js='menu_data']" position="attributes">
+            <attribute name="data-selector">#top_menu > li > a</attribute>
+        </xpath>
+        <xpath expr="//div[@data-js='background']" position="before">
+            <div data-js="droggol_product_snippet" data-selector=".droggol_product_snippet">
+                <we-button data-set-grid="true" data-no-preview="true">
+                    <i class="fa fa-shopping-cart fa-fw"/> Manage Products
+                </we-button>
+            </div>
+            <div data-js="droggol_category_mega_menu_snippet" data-selector=".droggol_category_mega_menu_snippet">
+                <we-button data-set-category="true" data-no-preview="true">
+                    <i class="fa fa-shopping-cart fa-fw"/> Manage Categories
+                </we-button>
+            </div>
+            <div data-js="droggol_gradient_option" data-selector="section, :not(.o_gallery > .container) > .carousel, .d_enable_bg_img">
+                <we-button data-set-gradient="true" data-no-preview="true">
+                    <i class="fa fa-adjust fa-fw"/> Background Gradiant
+                </we-button>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

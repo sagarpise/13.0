@@ -1,0 +1,158 @@
+$o-theme-font-size-base: (14 / 16) * 1rem;
+
+$o-gray-color-palettes: (
+    (
+        'white': #FFFFFF,
+        '100': #f8f9fa,
+        '200': #e9ecef,
+        '300': #dee2e6,
+        '400': #ced4da,
+        '500': #adb5bd,
+        '600': #6c757d,
+        '700': #495057,
+        '800': #343a40,
+        '900': #212529,
+        'black': #000000,
+    ),
+);
+
+// Colors: (menu, footer, h1...h6, ...)
+$o-color-palettes: ();
+@each $-palette in $o-gray-color-palettes {
+    $o-color-palettes: append($o-color-palettes, (
+        'menu': map-get($-palette, 'white'),
+        'preheader': map-get($-palette, 'white'),
+        'footer': map-get($-palette, '800'),
+        'text': map-get($-palette, '600'),
+        'h1': map-get($-palette, '800'),
+        'h2': map-get($-palette, '800'),
+        'h3': map-get($-palette, '800'),
+        'h4': map-get($-palette, '800'),
+        'h5': map-get($-palette, '800'),
+        'h6': map-get($-palette, '800'),
+
+        'product-label-green': #65B32E,
+        'product-label-blue': #00A1BE,
+        'product-label-gray': #ECECEC,
+        'product-label-red': #D41212,
+        'product-label-orange': #FEA569,
+        'product-label-black': #000000,
+
+        'menu-label-green': #65B32E,
+        'menu-label-blue': #00A1BE,
+        'menu-label-gray': #ECECEC,
+        'menu-label-red': #D41212,
+        'menu-label-orange': #FEA569,
+        'menu-label-black': #000000,
+    ));
+}
+
+// Theme colors
+$o-theme-color-palettes: (
+    (
+        'alpha': #FE696A,
+        'beta': #F3F5F9,
+        'gamma': #42d697,
+        'delta': #fea569,
+        'epsilon': #f34770,
+
+        'dark': #222,
+    ),
+    (
+        'alpha': #0da9ef,
+        'beta': #f5f5f5,
+        'gamma': #01cd74,
+        'delta': #fea569,
+        'epsilon': #ff5252,
+
+        'warning': #fea569,
+        'success': #01cd74,
+        'info': #50c6e9,
+        'danger': #ff5252,
+        'dark': #222,
+    ),
+    (
+        'alpha': #5c77fc,
+        'beta': #ebedf8,
+        'gamma': #33cb81,
+        'delta': #fc8c3a,
+        'epsilon': #f44336,
+
+        'warning': #fc8c3a,
+        'success': #33cb81,
+        'info': #5695fe,
+        'danger': #f44336,
+        'dark': #222,
+    ),
+    (
+        'alpha': #8aa355,
+        'beta': #EFF2F7,
+        'gamma': #36B37E,
+        'delta': #FFAB00,
+        'epsilon': #FF5630,
+
+        'warning': #FFAB00,
+        'success': #36B37E,
+        'danger': #FF5630,
+        'info': #00B8D9,
+        'dark': #222,
+    ),
+    (
+        'alpha': #3bb18f,
+        'beta': #EFF2F7,
+        'gamma': #36B37E,
+        'delta': #FFAB00,
+        'epsilon': #FF5630,
+
+        'warning': #FFAB00,
+        'success': #36B37E,
+        'danger': #FF5630,
+        'info': #00B8D9,
+        'dark': #222,
+    ),
+);
+
+//------------------------------------------------------------------------------
+// Fonts
+//------------------------------------------------------------------------------
+
+$o-theme-fonts: (
+    (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"),
+    ('Open Sans', sans-serif),
+    ('Rubik', sans-serif),
+    ('Poppins', sans-serif),
+    ('Roboto', sans-serif),
+    ('Oswald', sans-serif),
+);
+$o-theme-font-urls: (
+    null,
+    'Open+Sans:300,300i,400,400i,600,600i,700,700i',
+    'Rubik:300,300i,400,400i,500,500i,700,700i',
+    'Poppins:300,300i,400,400i,500,500i,600,600i,700,700i',
+    'Roboto:300,300i,400,400i,500,500i,700,700i',
+    'Oswald:300,400,500,600,700',
+);
+$o-theme-font-names: (
+    'Bootstrap',
+    'Open Sans',
+    'Rubik',
+    'Poppins',
+    'Roboto',
+    'Oswald',
+);
+
+//------------------------------------------------------------------------------
+// Website customizations
+//------------------------------------------------------------------------------
+
+$o-theme-color-palette-number: 3;
+
+$o-website-values-palettes: (
+    (
+        'logo-height': 4.2rem,
+        'font-number': 5,
+        'headings-font-number': 4,
+        'buttons-font-number': 4,
+        'navbar-font-number': 4,
+    ),
+);

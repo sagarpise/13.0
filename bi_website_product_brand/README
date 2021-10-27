@@ -1,0 +1,8 @@
+version 13.0.0.1
+	Installation Issue solve
+	getting error when select brand
+	when brand toogle enable form custom view then diretly not show brand menu , when attribute enable then show both menu and disable
+
+version 13.0.0.2
+	brand selection issue solve
+	search method change in base.

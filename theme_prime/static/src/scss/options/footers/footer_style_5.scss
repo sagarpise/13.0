@@ -1,0 +1,17 @@
+@include dr-footer-colors();
+
+$footer-yiq-color: color-yiq(color('footer'));
+.o_footer {
+    .tp-delivery-info {
+        border-bottom: 1px solid rgba($footer-yiq-color, 0.2);
+    }
+    .o_footer_copyright {
+        background-color: darken(color('footer'), 3%);
+        .tp-followus-icon {
+            @include dr-font-icons {
+                font-size: 1.2rem;
+                margin-right: 0.8rem;
+            }
+        }
+    }
+}

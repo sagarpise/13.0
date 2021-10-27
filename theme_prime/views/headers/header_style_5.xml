@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="header_style_5" inherit_id="portal.frontend_layout" name="Header Style 5" active="True">
+        <!-- Remove User account menu -->
+        <xpath expr="//ul[@id='top_menu']/li[hasclass('dropdown')]" position="replace">
+        </xpath>
+        <!-- Remove cart menu -->
+        <xpath expr="//ul[@id='top_menu']/li[contains(@t-attf-class, 'o_wsale_my_cart')]" position="replace">
+        </xpath>
+        <!-- Remove wishlist menu -->
+        <xpath expr="//ul[@id='top_menu']//li[contains(@class, 'o_wsale_my_wish')]" position="replace">
+        </xpath>
+        <!-- Remove divider menu -->
+        <xpath expr="//ul[@id='top_menu']/li[hasclass('divider')]" position="replace"/>
+        <xpath expr="//ul[@id='top_menu']/li[hasclass('divider')]" position="replace"/>
+        <xpath expr="//div[@id='wrapwrap']/header//button[hasclass('navbar-toggler')]" position="replace">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#top_menu_collapse">
+                <span class="icon-bar top-bar"></span>
+                <span class="icon-bar middle-bar"></span>
+                <span class="icon-bar bottom-bar"></span>
+            </button>
+        </xpath>
+        <xpath expr="//header//a[hasclass('navbar-brand')]" position="attributes">
+            <attribute name="class">navbar-brand logo d-md-none</attribute>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']/header" position="before">
+            <t t-call="theme_prime.tp_mobile_toolbar">
+                <t t-set="_classes" t-value="'dr_not_in_navbar'"/>
+                <t t-set="_ul_classes" t-value="'tp-tablet-hide-bottom-reached'"/>
+            </t>
+            <div class="tp_preheader">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-12 col-md-auto py-2 d-none d-md-block">
+                            <ul class="list-inline mb-0">
+                                <li t-if="res_company.phone" class="list-inline-item">
+                                    <a t-attf-href="tel:#{res_company.phone}"><span class="lnr lnr-phone-handset"/> <span t-field="res_company.phone"/></a>
+                                </li>
+                                <li t-if="res_company.email" class="list-inline-item">
+                                    <a t-attf-href="mailto:#{res_company.email}"><span class="lnr lnr-envelope"/> <span t-field="res_company.email"/></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-auto py-2 text-md-center d-none d-xl-block">
+                            <section><div>Welcome to our online store</div></section>
+                        </div>
+                        <div class="col-12 col-md-auto py-2 text-md-right">
+                            <ul class="list-inline mb-0">
+                                <t t-call="theme_prime.component_pricelist">
+                                    <t t-set="_classes" t-value="'tp_hide_in_mobile'"/>
+                                </t>
+                                <t t-call="theme_prime.component_language"/>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tp_header d-none d-lg-block">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <header class="py-2" style="flex: 0 0 220px;">
+                            <a t-if="request.website.viewref('website.layout_logo_show').active" href="/" class="navbar-brand logo">
+                                <span t-field="website.logo" t-options="{'widget': 'image'}" role="img" t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name" />
+                            </a>
+                            <t t-else="">
+                                <a class="navbar-brand" href="/" t-if="website" t-field="website.name">My Website</a>
+                            </t>
+                        </header>
+                        <div class="py-2 pr-5 dr_custom_search">
+                            <form class="o_wsale_products_searchbar_form" method="get" action="/shop">
+                                <div class="input-group">
+                                    <t t-call="theme_prime.d_search_input_category_dropdown"/>
+                                    <i class="fa fa-search search_icon"/>
+                                    <input type="text" name="search" data-limit="5" data-display-price="true" data-display-image="true" class="form-control search-query" placeholder="Search Product..." t-att-value="search"/>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary" aria-label="Search">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="py-2 tp-account-info-desktop">
+                            <div class="row align-items-center justify-content-end">
+                                <div class="col-auto my-1">
+                                    <div class="card border-0">
+                                        <div class="media align-items-center">
+                                            <t t-set="website_sale_order" t-value="website.sale_get_order()" />
+                                            <!-- To work cart menu should be inside header -->
+                                            <header class="mr-xl-3">
+                                                <a class="dr_sale_cart_sidebar o_wsale_my_cart d-block position-relative" href="/shop/cart" aria-label="Cart">
+                                                    <i class="lnr lnr-cart bg-beta rounded-circle"></i>
+                                                    <sup class="my_cart_quantity badge badge-primary mb-0 font-weight-bold" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" />
+                                                </a>
+                                            </header>
+                                            <div class="media-body d-none d-xl-block">
+                                                <div class="mb-1">My Cart</div>
+                                                <a class="dr_sale_cart_sidebar" href="/shop/cart"><h6 class="mb-0 hover-color-primary">View Cart</h6></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto my-1" t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                    <div class="card border-0">
+                                        <div class="media align-items-center">
+                                            <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
+                                            <!-- To work wishlist menu should be inside header -->
+                                            <header class="mr-xl-3">
+                                                <a class="o_wsale_my_wish d-block position-relative" href="/shop/wishlist" aria-label="Wishlist">
+                                                    <i class="lnr lnr-heart bg-beta rounded-circle"></i>
+                                                    <sup class="my_wish_quantity o_animate_blink badge badge-primary mb-0 font-weight-bold" t-esc="wishcount or ''" />
+                                                </a>
+                                            </header>
+                                            <div class="media-body d-none d-xl-block">
+                                                <div class="mb-1">My Wishlist</div>
+                                                <a href="/shop/wishlist"><h6 class="mb-0 hover-color-primary">View Wishlist</h6></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto my-1" t-if="request.website.viewref('portal.portal_show_sign_in').active">
+                                    <div class="card border-0">
+                                        <div class="media align-items-center d-none d-xl-flex">
+                                            <i class="lnr lnr-user bg-beta rounded-circle mr-3"></i>
+                                            <div class="media-body">
+                                                <div style="max-width: 150px;" class="text-truncate">Hello, <t t-esc="not user_id._is_public() and user_id.name or 'Guest'"/></div>
+                                                <div class="dropdown" t-ignore="true" t-if="not user_id._is_public()">
+                                                    <a href="#" class="dropdown-toggle d-block" data-toggle="dropdown" aria-label="Account Info">
+                                                        <h6 class="d-inline mb-0 hover-color-primary">My Account</h6>
+                                                    </a>
+                                                    <div class="dropdown-menu" role="menu">
+                                                        <div class="dropdown-header"><t t-esc="user_id.name"/></div>
+                                                        <a href="/my" role="menuitem" class="dropdown-item">My Account</a>
+                                                        <a href="/my/orders" role="menuitem" class="dropdown-item">Orders</a>
+                                                        <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                                                            Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="/web/session/logout?redirect=/" role="menuitem" class="dropdown-item">Logout</a>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown" groups="base.group_public">
+                                                    <a href="#" class="dropdown-toggle d-block" data-toggle="dropdown" aria-label="Account Info">
+                                                        <h6 class="d-inline mb-0 hover-color-primary">My Account</h6>
+                                                    </a>
+                                                    <div class="dropdown-menu" role="menu">
+                                                        <div class="dropdown-header">Guest</div>
+                                                        <a href="/web/login" role="menuitem" class="dropdown-item">Login</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="/shop/cart" role="menuitem" class="dropdown-item">My Cart</a>
+                                                        <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                                                            Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="media align-items-center d-none d-lg-block d-xl-none">
+                                            <div class="dropdown" t-ignore="true" t-if="not user_id._is_public()">
+                                                <a href="#" class="dropdown-toggle d-block" data-toggle="dropdown" aria-label="Account Info">
+                                                    <i class="lnr lnr-user bg-beta rounded-circle"></i>
+                                                </a>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <div class="dropdown-header"><t t-esc="user_id.name"/></div>
+                                                    <a href="/my" role="menuitem" class="dropdown-item">My Account</a>
+                                                    <a href="/my/orders" role="menuitem" class="dropdown-item">Orders</a>
+                                                    <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                                                        Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="/web/session/logout?redirect=/" role="menuitem" class="dropdown-item">Logout</a>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown" groups="base.group_public">
+                                                <a href="#" class="dropdown-toggle d-block" data-toggle="dropdown" aria-label="Account Info">
+                                                    <i class="lnr lnr-user bg-beta rounded-circle"></i>
+                                                </a>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <div class="dropdown-header">Guest</div>
+                                                    <a href="/web/login" role="menuitem" class="dropdown-item">Login</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="/shop/cart" role="menuitem" class="dropdown-item">My Cart</a>
+                                                    <a t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active" href="/shop/wishlist" role="menuitem" class="dropdown-item">
+                                                        Wishlist (<span class="tp-wishlist-counter"><t t-esc="wishcount"/></span>)
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tp_header d-lg-none">
+                <div class="container">
+                    <div class="row justify-content-center justify-content-lg-between align-items-center">
+                        <header class="col-12 col-md-4 text-md-center text-lg-left col-lg-3 py-2 d-none d-md-block">
+                            <a t-if="request.website.viewref('website.layout_logo_show').active" href="/" class="navbar-brand logo">
+                                <span t-field="website.logo" t-options="{'widget': 'image'}" role="img" t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name" />
+                            </a>
+                            <t t-else="">
+                                <a class="navbar-brand" href="/" t-if="website" t-field="website.name">My Website</a>
+                            </t>
+                        </header>
+                        <div class="col-12 col-lg-6 py-2 d-none d-lg-block">
+                            <form class="o_wsale_products_searchbar_form" method="get" action="/shop">
+                                <div class="input-group">
+                                    <input type="text" name="search" data-limit="5" data-display-price="true" data-display-image="true" class="form-control search-query" placeholder="Search Product..." t-att-value="search"/>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary" aria-label="Search">
+                                            <i class="fa fa-search"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

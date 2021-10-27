@@ -1,0 +1,92 @@
+#wrapwrap {
+    > header {
+        .dr_special_menu {
+            .o_mega_menu_toggle {
+                > .fa {
+                    color: theme-color('alpha');
+                }
+            }
+        }
+        > .navbar {
+            @include dr-navbar-light-default();
+        }
+        > .navbar.navbar-expand-md {
+            border-bottom: 1px solid #e6e6e6;
+            .navbar-toggler {
+                border: 1px solid $border-color;
+            }
+            .tp-account-info-container {
+                &.dr_in_navbar {
+                    @include tp-header-account-info-btns();
+                    .tp-header-navbar-btn {
+                        width: 80px !important;
+                        display: table-cell !important;
+                    }
+                    @include media-breakpoint-down(md) {
+                        display: none;
+                    }
+                }
+            }
+            @include media-breakpoint-down(sm) {
+                #top_menu {
+                    .nav-item {
+                        .nav-link {
+                            padding: .7rem 1.3rem;
+                            text-align: left;
+                            &.active {
+                                border-left: 2px solid theme-color('primary');
+                            }
+                        }
+                    }
+                }
+            }
+            @include media-breakpoint-up(md) {
+                padding: 0px;
+                #top_menu {
+                    .nav-item {
+                        .dr-menu-label {
+                            bottom: 60%;
+                        }
+                        &:hover {
+                            .nav-link {
+                                background-color: #f7f7f7;
+                            }
+                        }
+                        &.dr_special_menu {
+                            border-left: 1px solid #e6e6e6;
+                            border-right: 1px solid #e6e6e6;
+                        }
+                        .nav-link {
+                            transition: all 0.25s;
+                            color: rgba(0, 0, 0, 0.67);
+                            padding-top: 1.77rem;
+                            padding-bottom: 1.77rem;
+                            padding-right: 1.3rem;
+                            padding-left: 1.3rem;
+                            &:hover {
+                                color: rgba(0, 0, 0, 0.9);
+                            }
+                            &.active {
+                                color: rgba(0, 0, 0, 0.9);
+                                &:before {
+                                    top: auto;
+                                    left: 50%;
+                                    width: 2rem;
+                                    height: .125rem;
+                                    margin-top: 1.9rem;
+                                    margin-left: -1rem;
+                                    display: block;
+                                    position: absolute;
+                                    background-color: theme-color('alpha');
+                                    content: '';
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+$dr-mobile-bottom-cart: 80px;

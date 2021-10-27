@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ticket_template" model="mail.template">
+          <field name="name">Support Ticket Email</field>
+          <field name="email_from">${object.company_id and object.company_id.email or ''}</field>
+           <field name="subject">Hemos recibido un TICKET generado por Ud.</field>
+            <field name="email_to">${object.email|safe}</field>
+          <field name="lang">${object.lang}</field>
+            <field name="model_id" ref="model_helpdesk_ticket"></field>
+
+          <field name="auto_delete" eval="True"/>
+          <field name="body_html">
+                   <![CDATA[
+              % if object.partner_name :
+                    <p>Estimado ${object.partner_name},</p>
+                % endif
+             <p>Gracias por generar un TICKET de soporte, nos comunicaremos con usted en breve.</p>
+           
+            <p>Muchas gracias.</p>
+                    ]]>
+          </field>
+       </record>
+ 
+    </data>
+</odoo>
+
+
